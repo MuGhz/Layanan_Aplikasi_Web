@@ -28,6 +28,6 @@ def login(request):
             'description': 'Bad Request'
         }
         return JsonResponse(response,status=400)
-def users(request):
+#def users(request):
 
-def comments(request,id=''):
+#def comments(request,id=''):

@@ -23,7 +23,7 @@ def login(request):
         response['token'] = r['access_token']
         return JsonResponse(response,status=200)
     else :
-        response =
+        response = {
             'status': 'Error',
             'description': 'Bad Request'
         }

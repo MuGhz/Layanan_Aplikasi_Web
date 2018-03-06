@@ -10,3 +10,8 @@ def get_token(username,password):
     payloads = {'username': username, 'password': password, 'client_id': CLIENT_ID, 'client_secret': CLIENT_SECRET, 'grant_type': GRANT_TYPE}
     response = requests.post(OAUTH_URL, data=payloads)
     return response
+
+def authorize(token):
+    headers['Authorization'] = "Bearer "+token
+    response = requests.get(RESOURCE_URL,headers=headers)
+    return response

@@ -27,6 +27,25 @@ def login(request):
             'description': 'Bad Request'
         }
         return JsonResponse(response,status=400)
-#def users(request):
+def users(request):
+    if request.method == 'POST' :
+        try :
+            r = utils.authorize(request.POST['token'])
+        except Exception as e:
+            response = {
+                'status': 'Error',
+                'description': 'Unauthorized'
+            }
+            return JsonResponse(response,status=401)
+        r = json.loads(r.text)
+        user_id = r['user_id']
 
+    elif request.method == 'GET' :
+
+    else :
+        response = {
+            'status': 'Error',
+            'description': 'Bad Request'
+        }
+        return JsonResponse(response,status=400)
 #def comments(request,id=''):

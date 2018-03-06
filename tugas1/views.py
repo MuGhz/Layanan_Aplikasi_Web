@@ -8,9 +8,8 @@ def index(request):
     return HttpResponse("Hello, world. Welcome to Muhammad Ghozi's webservices.")
 def login(request):
     if request.method == 'POST' :
-        body = json.loads(request.body)
         try :
-            r = utils.get_token(body['username'],body['password'])
+            r = utils.get_token(request.POST['username'], request.POST['password'])
         except Exception as e:
             response = {
                 'status': 'Error',

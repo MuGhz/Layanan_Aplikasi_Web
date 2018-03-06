@@ -79,7 +79,7 @@ DATABASES = {
         'NAME': 'tugas1',
         'USER':'root',
         'PASSWORD': 'secret',
-        'HOST': '172.22.0.64',
+        'HOST': '172.22.0.63',
         'PORT': '3306',
     }
 }

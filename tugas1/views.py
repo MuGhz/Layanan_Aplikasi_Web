@@ -39,9 +39,9 @@ def users(request):
             return JsonResponse(response,status=401)
         r = json.loads(r.text)
         user_id = r['user_id']
-
+        return JsonResponse(r,status=200)
     elif request.method == 'GET' :
-
+        return JsonResponse({},status=200)
     else :
         response = {
             'status': 'Error',

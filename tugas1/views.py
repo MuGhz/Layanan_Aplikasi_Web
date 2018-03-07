@@ -134,7 +134,7 @@ def comments(request,id=''):
             return JsonResponse(response,status=400)
     elif request.method == 'GET' :
         if id == '' :
-
+            return JsonResponse({'status':'WIP'},200)
         else :
             try :
                 c = Comment.objects.get(id=id)

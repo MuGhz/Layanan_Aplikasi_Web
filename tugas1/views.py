@@ -122,7 +122,7 @@ def comments(request,id=''):
             data['comment'] = cmn
             data['createdBy'] = user_id
             data['createdAt'] = c.createdAt
-            data['updateAt'] = c.updateAt
+            data['updatedAt'] = c.updatedAt
             response={'status':'ok','data':data}
             return JsonResponse(response,status=200)
         except Exception as e:

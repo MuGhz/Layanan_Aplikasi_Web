@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
 from . import utils
 from .models import User, Comment
-import json
+import json, Dateutil
 # Create your views here.
 
 def index(request):
@@ -134,7 +134,32 @@ def comments(request,id=''):
             return JsonResponse(response,status=400)
     elif request.method == 'GET' :
         if id == '' :
-            return JsonResponse({'status':'WIP'},200)
+            page = request.GET.get('page')
+            limit = request.GET.get('limit')
+            createdBy = request.GET.get('createdBy')
+            startDate = request.GET.get('startDate')
+            endDate = request.GET.get('endDate')
+            if page == None or limit == None or createdBy == None or startDate == None or endDate == None:
+                response = {}
+                response['status'] = 'error'
+                response['description'] = 'parameter not completed'
+                return JsonResponse(response,status=400)
+            startDate = Dateutil.parse(startDate)
+            endDate = Dateutil.parse(endDate)
+            print("startdate :",startDate," enddate :",endDate)
+            max_query = int(page) * int(limit)
+            offset = max_query - int(limit)
+            all_comments = Comment.objects.filter(date_range[startDate,endDateA])
+            comments = all_comments[offset:max_query]
+            print(comments)
+            response ={
+            'status':'ok',
+            'page':page,
+            'limit':limit,
+            'total':all_comments.count(),
+            'data':list(comments.values())
+            }
+            return JsonResponse(response,status=200)
         else :
             try :
                 c = Comment.objects.get(id=id)

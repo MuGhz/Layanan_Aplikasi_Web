@@ -79,16 +79,17 @@ def users(request):
             response['status'] = 'error'
             response['description'] = 'parameter not completed'
             return JsonResponse(response,status=400)
-        max_query = page * limit
-        offset = total - limit
+        max_query = int(page) * int(limit)
+        offset = max_query - int(limit)
         total = User.objects.all()
         all_user = total[offset:max_query]
+        print(all_user)
         response ={
         'status':'ok',
         'page':page,
         'limit':limit,
         'total':total.count(),
-        'data':list(all_user.values)
+        'data':list(all_user.values())
         }
         return JsonResponse(response,status=200)
     else :

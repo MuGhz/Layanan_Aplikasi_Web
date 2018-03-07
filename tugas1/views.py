@@ -12,7 +12,6 @@ def index(request):
 def login(request):
     if request.method == 'POST' :
         try :
-            print(request.body)
             req = request.body.decode('utf-8')
             req = json.loads(req)
             r = utils.get_token(req['username'], req['password'])
@@ -84,7 +83,6 @@ def users(request):
         offset = max_query - int(limit)
         total = User.objects.all()
         all_user = total[offset:max_query]
-        print(all_user)
         response ={
         'status':'ok',
         'page':page,
@@ -149,7 +147,6 @@ def comments(request,id=''):
             offset = max_query - int(limit)
             c = Comment.objects.filter(createdAt__range=(parser.parse(startDate),parser.parse(endDate)),createdBy__iexact=createdBy)
             comments = c[offset:max_query]
-            print(c)
             response ={
             'status':'ok',
             'page':page,
@@ -191,7 +188,6 @@ def comments(request,id=''):
             }
             return JsonResponse(response,status=401)
         r = json.loads(r.text)
-        print(r)
         user_id = r['user_id']
         try :
             cmn = json.loads(request.body.decode('utf-8'))['comment']
@@ -199,14 +195,14 @@ def comments(request,id=''):
             print(e)
             response = {'status':'error', 'description' : 'parameter not completed'}
             return JsonResponse(response,status=400)
-        if id == '' :
+        if id == None :
             response = {'status':'error', 'description' : 'parameter not completed'}
             return JsonResponse(response,status=400)
         else :
             try :
                 c = Comment.objects.get(id=id)
             except Exception as e:
-                print("error ketika mengambil comment berdasarkan id")
+                print(e)
                 response = {
                     'status': 'Error',
                     'description': 'Bad Request'
@@ -239,10 +235,9 @@ def comments(request,id=''):
             }
             return JsonResponse(response,status=401)
         r = json.loads(r.text)
-        print(r)
         user_id = r['user_id']
 
-        if id == '' :
+        if id == None :
             response = {'status':'error', 'description' : 'parameter not completed'}
             return JsonResponse(response,status=400)
         else :

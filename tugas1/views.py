@@ -11,7 +11,10 @@ def index(request):
 def login(request):
     if request.method == 'POST' :
         try :
-            r = utils.get_token(request.POST['username'], request.POST['password'])
+            req = request.body.decode('utf-8')
+            req = json.loads(req)
+            print(req)
+            r = utils.get_token(req['username'], req['password'])
         except Exception as e:
             response = {
                 'status': 'Error',
@@ -32,7 +35,7 @@ def login(request):
 def users(request):
     if request.method == 'POST' :
         try :
-            r = utils.authorize(request.META['Authorization'])
+            r = utils.authorize(request.META['HTTP_AUTHORIZATION'])
         except Exception as e:
             response = {
                 'status': 'Error',

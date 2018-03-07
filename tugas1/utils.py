@@ -12,6 +12,7 @@ def get_token(username,password):
     return response
 
 def authorize(bearer):
+    headers = {}
     headers['Authorization'] = bearer
     response = requests.get(RESOURCE_URL,headers=headers)
     return response

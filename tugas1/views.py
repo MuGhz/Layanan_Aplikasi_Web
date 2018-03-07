@@ -182,13 +182,12 @@ def comments(request,id=''):
         else :
             try :
                 c = Comment.objects.get(id=id)
-                print(c)
             except Exception as e:
-                print(e)
+                print("error ketika mengambil comment berdasarkan id")
                 response = {
                     'status': 'Error',
                     'description': 'Bad Request'
-                    }
+                }
                 return JsonResponse(response,status=400)
         if user_id != c.createdBy :
             response = {

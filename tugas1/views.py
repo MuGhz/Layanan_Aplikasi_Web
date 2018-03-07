@@ -3,7 +3,8 @@ from django.http import HttpResponse, JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
 from . import utils
 from .models import User, Comment
-import json, Dateutil
+from dateutil import parser
+import json
 # Create your views here.
 
 def index(request):
@@ -144,12 +145,12 @@ def comments(request,id=''):
                 response['status'] = 'error'
                 response['description'] = 'parameter not completed'
                 return JsonResponse(response,status=400)
-            startDate = Dateutil.parse(startDate)
-            endDate = Dateutil.parse(endDate)
-            print("startdate :",startDate," enddate :",endDate)
+            startDate = parser.parse(startDate)
+            endDate = parser.parse(endDate)
+            print(startDate)
             max_query = int(page) * int(limit)
             offset = max_query - int(limit)
-            all_comments = Comment.objects.filter(date_range[startDate,endDateA])
+            all_comments = Comment.objects.filter(createdAt__range[startDate,endDateA]).all()
             comments = all_comments[offset:max_query]
             print(comments)
             response ={

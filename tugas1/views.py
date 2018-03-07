@@ -140,16 +140,14 @@ def comments(request,id=''):
             createdBy = request.GET.get('createdBy')
             startDate = request.GET.get('startDate')
             endDate = request.GET.get('endDate')
-            if page == None or limit == None or createdBy == None or startDate == None or endDate == None:
+            if (page == None or limit == None or createdBy == None or startDate == None or endDate == None) :
                 response = {}
                 response['status'] = 'error'
                 response['description'] = 'parameter not completed'
                 return JsonResponse(response,status=400)
-            startDate = parser.parse(startDate)
-            endDate = parser.parse(endDate)
             max_query = int(page) * int(limit)
             offset = max_query - int(limit)
-            all_comments = Comment.objects.filter(createdAt__range=(startDate,endDate)).all()
+            all_comments = Comment.objects.filter(createdAt__range=(parser.parse(startDate),parser.parse(endDate)),createdBy=createdBy).all()
             comments = all_comments[offset:max_query]
             print(comments)
             response ={

@@ -205,7 +205,7 @@ def comments(request,id=''):
             data['createdAt'] = c.createdAt
             data['updatedAt'] = c.updatedAt
             response={'status':'ok','data':data}
-            return JsonResponse(response,200)
+            return JsonResponse(response,status=200)
     elif request.method == 'DELETE' :
         try :
             r = utils.authorize(request.META['HTTP_AUTHORIZATION'])

@@ -158,9 +158,51 @@ def comments(request,id=''):
             return JsonResponse(response,status=200)
         return JsonResponse({'status':'WIP'},200)
     elif request.method == 'PUT' :
-        return JsonResponse({'status':'WIP'},200)
+        try :
+            r = utils.authorize(request.META['HTTP_AUTHORIZATION'])
+        except Exception as e:
+            response = {
+                'status': 'Error',
+                'description': 'Unauthorized'
+            }
+            return JsonResponse(response,status=401)
+        r = json.loads(r.text)
+        print(r)
+        user_id = r['user_id']
+        try :
+            comment_id = json.loads(request.body.decode('utf-8'))['id']
+            cmn = json.loads(request.body.decode('utf-8'))['comment']
+        except Exception as e:
+            print(e)
+            response = {'status':'error', 'description' : 'parameter not completed'}
+            return JsonResponse(response,status=400)
+        try :
+            c = Comment.objects.get(id=comment_id)
+        except Exception as e:
+            print(e)
+            response = {
+                'status': 'Error',
+                'description': 'Bad Request'
+            }
+            return JsonResponse(response,status=400)
+        if user_id != c.createdBy :
+            response = {
+                'status': 'Error',
+                'description': 'Unauthorized'
+            }
+            return JsonResponse(response,status=401)
+        else :
+            c.comment = cmn
+            c.save()
+            data={}
+            data['id'] = c.id
+            data['comment'] = c.comment
+            data['createdBy'] = c.createdBy
+            data['createdAt'] = c.createdAt
+            data['updatedAt'] = c.updatedAt
+            response={'status':'ok','data':data}
+            return JsonResponse(response,200)
     elif request.method == 'DELETE' :
-        print(request.META)
         try :
             r = utils.authorize(request.META['HTTP_AUTHORIZATION'])
         except Exception as e:

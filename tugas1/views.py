@@ -160,6 +160,7 @@ def comments(request,id=''):
     elif request.method == 'PUT' :
         return JsonResponse({'status':'WIP'},200)
     elif request.method == 'DELETE' :
+        print(request.META)
         try :
             r = utils.authorize(request.META['HTTP_AUTHORIZATION'])
         except Exception as e:
@@ -172,23 +173,19 @@ def comments(request,id=''):
         print(r)
         user_id = r['user_id']
 
-        try :
-            id = json.loads(request.body.decode('utf-8'))['id']
-        except Exception as e:
-            print(e)
-            response = {}
-            response['status'] = 'error'
-            response['description'] = 'parameter not completed'
+        if id == '' :
+            response = {'status':'error', 'description' : 'parameter not completed'}
             return JsonResponse(response,status=400)
-
-        try :
-            c = Comment.objects.get(id=id)
-        except Exception as e:
-            print(e)
-            response = {
-                'status': 'Error',
-                'description': 'Bad Request'
-            }
+        else :
+            try :
+                c = Comment.objects.get(id=id)
+            except Exception as e:
+                print(e)
+                response = {
+                    'status': 'Error',
+                    'description': 'Bad Request'
+                }
+                return JsonResponse(response,status=400)
         if user_id != c.createdBy :
             response = {
                 'status': 'Error',
@@ -197,6 +194,4 @@ def comments(request,id=''):
             return JsonResponse(response,status=401)
         else :
             c.delete()
-            response = {}
-            response['status'] = 'ok'
-            return JsonResponse(response,status=200)
+            return JsonResponse({'status':'ok'},status=200)

@@ -170,21 +170,24 @@ def comments(request,id=''):
         print(r)
         user_id = r['user_id']
         try :
-            comment_id = json.loads(request.body.decode('utf-8'))['id']
             cmn = json.loads(request.body.decode('utf-8'))['comment']
         except Exception as e:
             print(e)
             response = {'status':'error', 'description' : 'parameter not completed'}
             return JsonResponse(response,status=400)
-        try :
-            c = Comment.objects.get(id=comment_id)
-        except Exception as e:
-            print(e)
-            response = {
-                'status': 'Error',
-                'description': 'Bad Request'
-            }
+        if id == '' :
+            response = {'status':'error', 'description' : 'parameter not completed'}
             return JsonResponse(response,status=400)
+        else :
+            try :
+                c = Comment.objects.get(id=id)
+            except Exception as e:
+                print(e)
+                response = {
+                    'status': 'Error',
+                    'description': 'Bad Request'
+                    }
+                return JsonResponse(response,status=400)
         if user_id != c.createdBy :
             response = {
                 'status': 'Error',

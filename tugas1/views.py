@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from . import utils
 from .models import User, Comment
 import json
@@ -79,17 +80,20 @@ def users(request):
             response['status'] = 'error'
             response['description'] = 'parameter not completed'
             return JsonResponse(response,status=400)
-        max_query = int(page) * int(limit)
-        offset = max_query - int(limit)
-        total = User.objects.all()
-        all_user = total[offset:max_query]
-        print(all_user)
+        user_list = User.objects.all()
+        paginator = Paginator(user_list, limit)
+        try :
+            users = paginator.page(page)
+        except PageNotAnInteger:
+            users = paginator.page(1)
+        except EmptyPage:
+            users = paginator.page(paginator.num_pages)
         response ={
         'status':'ok',
         'page':page,
         'limit':limit,
-        'total':total.count(),
-        'data':list(all_user.values())
+        'total':user_list.count(),
+        'data':list(users.values())
         }
         return JsonResponse(response,status=200)
     else :

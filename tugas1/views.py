@@ -147,10 +147,9 @@ def comments(request,id=''):
                 return JsonResponse(response,status=400)
             startDate = parser.parse(startDate)
             endDate = parser.parse(endDate)
-            print(startDate)
             max_query = int(page) * int(limit)
             offset = max_query - int(limit)
-            all_comments = Comment.objects.filter(createdAt__range[startDate,endDateA]).all()
+            all_comments = Comment.objects.filter(createdAt__range=(startDate,endDateA)).all()
             comments = all_comments[offset:max_query]
             print(comments)
             response ={

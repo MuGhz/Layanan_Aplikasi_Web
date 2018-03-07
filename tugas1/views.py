@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
 from . import utils
-from .models import User
+from .models import User, Comment
 import json
 # Create your views here.
 
@@ -98,4 +98,45 @@ def users(request):
             'description': 'Bad Request'
         }
         return JsonResponse(response,status=400)
-#def comments(request,id=''):
+
+def comments(request,id=''):
+    if request.method == 'POST' :
+        try :
+            r = utils.authorize(request.META['HTTP_AUTHORIZATION'])
+        except Exception as e:
+            response = {
+                'status': 'Error',
+                'description': 'Unauthorized'
+            }
+            return JsonResponse(response,status=401)
+        r = json.loads(r.text)
+        print(r)
+        user_id = r['user_id']
+        req = json.loads(request.body.decode('utf-8'))
+        try:
+            cmn = req['comment']
+            c = Comment(comment=cmn,createdBy=user_id)
+            c.save()
+            data = {}
+            data['id'] = c.id
+            data['comment'] = cmn
+            data['createdBy'] = user_id
+            data['createdAt'] = c.createdAt
+            data['updateAt'] = c.updateAt
+            response={'status':'ok','data':data}
+            return JsonResponse(response,status=200)
+        except Exception as e:
+            print(e)
+            response = {
+                'status': 'Error',
+                'description': 'Bad Request'
+            }
+            return JsonResponse(response,status=400)
+
+        return JsonResponse({'status':'WIP'},200)
+    elif request.method == 'GET' :
+        return JsonResponse({'status':'WIP'},200)
+    elif request.method == 'PUT' :
+        return JsonResponse({'status':'WIP'},200)
+    elif request.method == 'DELETE' :
+        return JsonResponse({'status':'WIP'},200)

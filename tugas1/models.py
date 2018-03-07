@@ -6,3 +6,8 @@ class User(models.Model):
     displayName = models.CharField(max_length=40)
     def __str__(self):
         return self.username
+def Comment(models.Model):
+    comment = models.TextField(default='')
+    createdBy = models.CharField(max_length=40)
+    def __str__(self):
+        return self.createdBy

@@ -46,7 +46,7 @@ def users(request):
         r = json.loads(r.text)
         print(r)
         user_id = r['user_id']
-        displayName = json.loads(request.body.decode('utf-8'))
+        displayName = json.loads(request.body.decode('utf-8'))['displayName']
         try :
             u = User.objects.get(username=user_id)
             response = {

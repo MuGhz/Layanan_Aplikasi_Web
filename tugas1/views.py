@@ -11,11 +11,12 @@ def index(request):
 def login(request):
     if request.method == 'POST' :
         try :
+            print(request.body)
             req = request.body.decode('utf-8')
             req = json.loads(req)
-            print(req)
             r = utils.get_token(req['username'], req['password'])
         except Exception as e:
+            print(e)
             response = {
                 'status': 'Error',
                 'description': 'Unauthorized'
@@ -43,8 +44,9 @@ def users(request):
             }
             return JsonResponse(response,status=401)
         r = json.loads(r.text)
+        print(r)
         user_id = r['user_id']
-        displayName = request.POST['displayName']
+        displayName = json.loads(request.body.decode('utf-8'))
         try :
             u = User.objects.get(username=user_id)
             response = {

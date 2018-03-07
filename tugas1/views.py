@@ -134,7 +134,7 @@ def comments(request,id=''):
             }
             return JsonResponse(response,status=400)
     elif request.method == 'GET' :
-        if id == '' :
+        if id == None :
             page = request.GET.get('page')
             limit = request.GET.get('limit')
             createdBy = request.GET.get('createdBy')
@@ -144,17 +144,17 @@ def comments(request,id=''):
                 response = {}
                 response['status'] = 'error'
                 response['description'] = 'parameter not completed'
-                return JsonResponse(response,status=400)
+                return JsonResponse({},status=400)
             max_query = int(page) * int(limit)
             offset = max_query - int(limit)
-            all_comments = Comment.objects.filter(createdAt__range=(parser.parse(startDate),parser.parse(endDate)),createdBy=createdBy).all()
-            comments = all_comments[offset:max_query]
-            print(comments)
+            c = Comment.objects.filter(createdAt__range=(parser.parse(startDate),parser.parse(endDate)),createdBy__iexact=createdBy)
+            comments = c[offset:max_query]
+            print(c)
             response ={
             'status':'ok',
             'page':page,
             'limit':limit,
-            'total':all_comments.count(),
+            'total':c.count(),
             'data':list(comments.values())
             }
             return JsonResponse(response,status=200)

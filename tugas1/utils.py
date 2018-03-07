@@ -11,7 +11,7 @@ def get_token(username,password):
     response = requests.post(OAUTH_URL, data=payloads)
     return response
 
-def authorize(token):
-    headers['Authorization'] = "Bearer "+token
+def authorize(bearer):
+    headers['Authorization'] = bearer
     response = requests.get(RESOURCE_URL,headers=headers)
     return response

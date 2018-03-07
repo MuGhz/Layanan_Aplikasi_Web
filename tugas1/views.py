@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
+from django.core.exceptions import ObjectDoesNotExist
 from . import utils
+from .models import User
 import json
 # Create your views here.
 
@@ -30,7 +32,7 @@ def login(request):
 def users(request):
     if request.method == 'POST' :
         try :
-            r = utils.authorize(request.POST['token'])
+            r = utils.authorize(request.META['Authorization'])
         except Exception as e:
             response = {
                 'status': 'Error',
@@ -39,7 +41,23 @@ def users(request):
             return JsonResponse(response,status=401)
         r = json.loads(r.text)
         user_id = r['user_id']
-        return JsonResponse(r,status=200)
+        displayName = request.POST['displayName']
+        try :
+            u = User.objects.get(username=user_id)
+            response = {
+                'status': 'error',
+                'description': 'User telah memiliki displayName'
+            }
+            return JsonResponse(response,status=409)
+        except ObjectDoesNotExist :
+            u = User(username=user_id, displayName = displayName)
+            u.save()
+            userId = u.id
+            response = {}
+            response['status']= 'ok'
+            response['userId'] = userId
+            response['displayName'] = displayName
+            return JsonResponse(response,status=200)
     elif request.method == 'GET' :
         return JsonResponse({},status=200)
     else :

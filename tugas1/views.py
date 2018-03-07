@@ -64,7 +64,33 @@ def users(request):
             response['displayName'] = displayName
             return JsonResponse(response,status=200)
     elif request.method == 'GET' :
-        return JsonResponse({},status=200)
+        try :
+            r = utils.authorize(request.META['HTTP_AUTHORIZATION'])
+        except Exception as e:
+            response = {
+                'status': 'Error',
+                'description': 'Unauthorized'
+            }
+            return JsonResponse(response,status=401)
+        page = request.GET.get('page')
+        limit = request.GET.get('limit')
+        if page == None or limit == None :
+            response = {}
+            response['status'] = 'error'
+            response['description'] = 'parameter not completed'
+            return JsonResponse(response,status=400)
+        max_query = page * limit
+        offset = total - limit
+        total = User.objects.all()
+        all_user = total[offset:max_query]
+        response ={
+        'status':'ok',
+        'page':page,
+        'limit':limit,
+        'total':total.count(),
+        'data':list(all_user.values)
+        }
+        return JsonResponse(response,status=200)
     else :
         response = {
             'status': 'Error',

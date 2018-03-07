@@ -161,6 +161,7 @@ def comments(request,id=''):
         try :
             r = utils.authorize(request.META['HTTP_AUTHORIZATION'])
         except Exception as e:
+            print(e)
             response = {
                 'status': 'Error',
                 'description': 'Unauthorized'
@@ -181,6 +182,7 @@ def comments(request,id=''):
         else :
             try :
                 c = Comment.objects.get(id=id)
+                print(c)
             except Exception as e:
                 print(e)
                 response = {

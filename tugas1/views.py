@@ -132,9 +132,30 @@ def comments(request,id=''):
                 'description': 'Bad Request'
             }
             return JsonResponse(response,status=400)
-
-        return JsonResponse({'status':'WIP'},200)
     elif request.method == 'GET' :
+        if id == '' :
+
+        else :
+            try :
+                c = Comment.objects.get(id=id)
+            except Exception as e:
+                print(e)
+                response = {
+                    'status': 'Error',
+                    'description': 'Bad Request'
+                }
+                return JsonResponse(response,status=400)
+            data = {}
+            data['id'] = id
+            data['comment'] = c.comment
+            data['createdBy'] = c.createdBy
+            data['createdAt'] = c.createdAt
+            data['updatedAt'] =  c.updatedAt
+            response = {
+            'status':'ok',
+            'data':data
+            }
+            return JsonResponse(response,status=200)
         return JsonResponse({'status':'WIP'},200)
     elif request.method == 'PUT' :
         return JsonResponse({'status':'WIP'},200)

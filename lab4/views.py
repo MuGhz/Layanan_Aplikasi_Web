@@ -6,5 +6,6 @@ def index(request):
     image_data = open('lab4/charizad.jpg','rb').read()
     return HttpResponse(image_data, content_type='image/jpeg')
 def thumbnail(request):
-    im = get_thumbnail('lab4/charizad.jpg','300x300',crop='center',quality=99)
+    image_data = open('lab4/charizad.jpg','rb').read()
+    im = get_thumbnail(image_data,'300x300',crop='center',quality=99)
     return HttpResponse(im, content_type='image/jpeg')

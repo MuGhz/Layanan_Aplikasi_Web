@@ -20,5 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/',include('tugas1.urls')),
     path('oauth/',include('cots1.urls')),
-    path('thumbnail/',include('lab4.urls'))
+    path('lab4/',include('lab4.urls')),
 ]

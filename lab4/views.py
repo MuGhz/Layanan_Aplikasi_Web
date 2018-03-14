@@ -11,6 +11,6 @@ def thumbnail(request):
     thumbnail_file = filename+'-thumbnail.jpg'
     size = 300,300
     response = Image.open(filename+'.jpg')
-    response = response.thumbnail(size)
-    response = response.save(filename+'-thumbnail.jpg',"JPEG")
-    return HttpResponse(response)
+    response.thumbnail(size)
+    response.save(filename + '-thumbnail.jpg',"JPEG")
+    return HttpResponse(open(thumbnail_file,'rb'), content_type='image/jpeg')

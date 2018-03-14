@@ -8,4 +8,4 @@ def index(request):
     return HttpResponse(image_data, content_type='image/jpeg')
 def thumbnail(request):
     image_data = open('lab4/charizad.jpg','rb').read()
-    return HttpResponse(Image.open(image_data).thumbnail('300x300').save("thumbnail_%s_%s" % (image_data, "_".join('300x300'))))
+    return HttpResponse(Image.open(image_data).thumbnail(300,300).save("thumbnail_%s_%s" % (image_data, "_".join((300,300)))))

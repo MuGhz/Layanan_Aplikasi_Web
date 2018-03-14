@@ -2,3 +2,4 @@ requests
 dateutil
 pillow
 python-thumbnails
+sorl-thumbnail==12.3

@@ -1,2 +1,4 @@
 requests
 dateutil
+pillow
+python-thumbnails

@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'tugas1',
     'cots1',
     'lab4',
-    'thumbnails',
 ]
 
 MIDDLEWARE = [

@@ -4,8 +4,10 @@ from PIL import Image
 
 # Create your views here.
 def index(request):
-    image_data = open('lab4/charizad.jpg','rb').read()
+    image_data = open('lab4/image/charizad.jpg','rb').read()
     return HttpResponse(image_data, content_type='image/jpeg')
 def thumbnail(request):
-    image_data = open('lab4/charizad.jpg','rb').read()
-    return HttpResponse(Image.open('lab4/charizad.jpg').thumbnail((300,300)).save("thumbnail_%s_%s" % ('lab4/charizad.jpg', "_".join(((300,300))))))
+    response = Image.open('lab4/image/charizad.jpg')
+    response = response.thumbnail((300,300))
+    response = response.save("thumbnail_%s_%s" % ('lab4/image/charizad.jpg', "_".join(size)))
+    return HttpResponse(response)

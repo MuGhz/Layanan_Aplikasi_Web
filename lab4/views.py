@@ -14,4 +14,4 @@ def thumbnail(request):
     context={
         'item':im,
     }
-    return render(template.render(context,request))
+    return render(request,'lab4/index.html',context)

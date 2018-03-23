@@ -17,40 +17,32 @@ def thumbnail(request):
     return HttpResponse(open(thumbnail_file,'rb'), content_type='image/jpeg')
 def add(request):
     if request.method == 'GET' :
-        try :
-            a = (int) request.GET.get('a')
-        except :
-            response = {
-                'status': '400',
-                'description': 'Bad Request. a is not integer'
-            }
-            return JsonResponse(response,status=400)
-        try :
-            b = (int) request.GET.get('b')
-        except :
-            response = {
-                'status': '400',
-                'description': 'Bad Request. b is not integer'
-            }
-            return JsonResponse(response,status=400)
+        a = request.GET.get('a')
+        b = request.GET.get('b')
         data = datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " :: A = " + a + " :: B = " + b
         logfile = os.path.dirname(__file__)+'/log/logfile.txt'
         log = open(logfile, 'a')
         log.write(data)
         log.close()
-        if a > 0 and b > 0 :
-            sum = a+b
+        if a is None or b is None :
+            response = {
+                'status': '400',
+                'description': 'Bad Request'
+            }
+            return JsonResponse(response,status=400)
+        elif not a.isnumeric() or not b.isnumeric() :
+            response = {
+                'status': '400',
+                'description': 'Bad Request. a and b must be integer'
+            }
+            return JsonResponse(response,status=400)
+        else :
+            sum = (int)a + (int)b
             response = {
                 'status': '200',
                 'hasil': sum
             }
             return JsonResponse(response,status=200)
-        else :
-            response = {
-                'status': '400',
-                'description': 'Bad Request. number must be positive'
-            }
-            return JsonResponse(response,status=400)
     else :
         response = {
             'status': '400',

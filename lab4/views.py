@@ -14,3 +14,5 @@ def thumbnail(request):
     response.thumbnail(size)
     response.save(filename + '-thumbnail.jpg',"JPEG")
     return HttpResponse(open(thumbnail_file,'rb'), content_type='image/jpeg')
+def add(request):
+    if request.method == 'GET' :

@@ -2018,3 +2018,7 @@ March 14, 2018 - 06:25:36
 Django version 2.0.2, using settings 'law.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
+Not Found: /lab4/add/
+[23/Mar/2018 15:58:09] "GET /lab4/add/?a=1&b=salah HTTP/1.0" 404 2702
+[23/Mar/2018 15:58:18] "GET /lab4/add?a=1&b=salah HTTP/1.0" 400 72
+[23/Mar/2018 15:58:22] "GET /lab4/add?a=1&b=1 HTTP/1.0" 200 29

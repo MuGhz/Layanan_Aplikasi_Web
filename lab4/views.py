@@ -19,7 +19,7 @@ def add(request):
     if request.method == 'GET' :
         a = request.GET.get('a')
         b = request.GET.get('b')
-        data = datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " :: A = " + a + " :: B = " + b
+        data = datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " :: A = " + a + " :: B = " + b + '\n'
         logfile = os.path.dirname(__file__)+'/log/logfile.txt'
         log = open(logfile, 'a')
         log.write(data)
@@ -37,7 +37,7 @@ def add(request):
             }
             return JsonResponse(response,status=400)
         else :
-            sum = (int)a + (int)b
+            sum =int(a) + int(b)
             response = {
                 'status': '200',
                 'hasil': sum

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from PIL import Image
 from datetime import datetime
 import os
@@ -17,30 +17,38 @@ def thumbnail(request):
     return HttpResponse(open(thumbnail_file,'rb'), content_type='image/jpeg')
 def add(request):
     if request.method == 'GET' :
-        a = request.GET.get('a')
-        b = request.GET.get('b')
+        try :
+            a = (int) request.GET.get('a')
+        except :
+            response = {
+                'status': '400',
+                'description': 'Bad Request. a is not integer'
+            }
+            return JsonResponse(response,status=400)
+        try :
+            b = (int) request.GET.get('b')
+        except :
+            response = {
+                'status': '400',
+                'description': 'Bad Request. b is not integer'
+            }
+            return JsonResponse(response,status=400)
         data = datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " :: A = " + a + " :: B = " + b
         logfile = os.path.dirname(__file__)+'/log/logfile.txt'
         log = open(logfile, 'a')
         log.write(data)
         log.close()
-        if isinstance(a,int) and isinstance(b,int) :
+        if a > 0 and b > 0 :
             sum = a+b
             response = {
                 'status': '200',
                 'hasil': sum
             }
             return JsonResponse(response,status=200)
-        elif not isinstance(a,int) :
+        else :
             response = {
                 'status': '400',
-                'description': 'Bad Request. a is not integer'
-            }
-            return JsonResponse(response,status=400)
-        elif not isinstance(b,int) :
-            response = {
-                'status': '400',
-                'description': 'Bad Request. b is not integer'
+                'description': 'Bad Request. number must be positive'
             }
             return JsonResponse(response,status=400)
     else :

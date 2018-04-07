@@ -19,5 +19,5 @@ def test(request):
             'uploaded_file_url': uploaded_file_url
         })
     return render(request,'uploads/uploads.html')
-def javascript(request):
-    return render(request, 'uploads/upload-progress.js')
+def upload(request):
+    return render(request, 'uploads/upload.js')

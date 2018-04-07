@@ -1,167 +1,120 @@
 <html>
-    <head>
-        <title>nginx Upload Progress</title>
-        <style>
-        .bar {
-          width: 300px;
+<head>
+    <title>nginx Upload Progress</title>
+    <style>
+        body {
+            font-family: arial;
+            font-size: 11px;
         }
-
-        #progress {
-          background: #eee;
-          border: 1px solid #222;
+        #statbar_box {
+            width: 500px;
+            height: 20px;
+            background-color: #FFF;
+            position: relative;
+            text-align: center;
+            margin-bottom: 12px;
+            display: none;
+            border-radius: 4px;
         }
-        #progressbar {
-          width: 0px;
-          height: 24px;
-          background: #333;
+        #statbar_bar {
+            position: absolute;
+            height: 20px;
+            top: 0px;
+            background-color: darkred;
+            text-align: center;
+            z-index: 100;
+            border-radius: 4px;
         }
-        </style>
-        <script src="http://code.jquery.com/jquery-1.8.3.min.js" type="text/javascript"></script>
-        <script type="text/javascript">
-        jQuery.nginxUploadProgress = function(settings) {
-         settings = jQuery.extend({
-           interval: 2000,
-           progress_bar_id: "progressbar",
-           nginx_progress_url: "/progress"
-         }, settings);
+        #status {
+            margin-bottom: 12px;
+            text-align: center;
+            width: 500px;
+        }
+        iframe {
+            width: 500px;
+            height: 30px;
+            margin-bottom: 12px;
+            position: absolute;
+            top: -300px;
+        }
+        #footer {
+            text-align: center;
+            width: 500px;
+            background: #ddd;
+            padding: 5px;
+            border-radius: 4px;
+        }
+        #base {
+            width: 500px;
+            padding: 20px;
+            background: #EFEFEF;
+            border-radius: 4px;
+            position: relative;
+            margin: auto;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        (function ($) {
+            var interv;
+            var test = 1;
+            var statbarWidth;
+            $(document).ready(function () {
+                statbarWidth = $("#statbar_box").width();
+                $("#upload").submit(function () {
+                                        /* generate random progress-id */
+                                        uuid = "";
+                                        for (i = 0; i < 32; i++) {
+                                                uuid += Math.floor(Math.random() * 16).toString(16);
+                                        }
+                                        /* patch the form-action tag to include the progress-id */
+                                        $("#upload").attr("action", "/upload?X-Progress-ID=" + uuid);
+                    $("#statbar_bar").css("width", "1px");
+                    $("#statbar_box").fadeIn(500);
+                    $(this).disabled = false;
+                    interv = setInterval(function () {
+                        progress(uuid)
+                    }, 800);
+                });
+            });
+            var firststart = true;
+            function progress(uuid) {
+                $.getJSON("progress", {"X-Progress-ID": uuid}, function (data) {
+                    console.log(data);
+                    if (data.state == 'done') {
+                        clearInterval(interv);
+                        $("#status").html('100%');
+                        $("#statbar_bar").animate({"width": statbarWidth + "px"}).animate({"width": "1px"}, 400, function () {
+                            $("#statbar_box").fadeOut(500);
+                            $("#status").html('0%');
+                        });
+                    }
+                    var prozent = Math.round((data.received * 100) / data.size);
+                    prozent = !prozent?0:prozent;
+                    var pixel = Math.round((prozent * statbarWidth) / 100);
+                    $("#status").html(prozent + '%');
+                    firststart = false;
+                    $("#statbar_bar").animate({"width": pixel + "px"});
 
-
-        	$("#upload").submit(function() {
-        		$('#'+settings['progress_bar_id']).width('0%');
-
-        		// Create a new upload uuid and update ajaxSubmit url with it
-        		var uuid = "" + new Date().getTime() + Math.floor(Math.random()*100);
-        		var action = $('#upload').attr('action');
-        		var full_url = action+'?X-Progress-ID='+uuid;
-                        window.alert(full_url);
-        		var options = {
-        				url: full_url,
-        	      beforeSubmit: function(formData, jqForm, options) {
-        	       // TODO HERE!!! set the url (like above) every time we submit the form (so in this method...). Setting the form's action in the dom doesn't work because ajaxForm uses the url param above
-
-        	       $('#error').hide();
-        	       $('#uploader .desc').hide();
-        	       $('#uploader').hide();
-        	       $('#uploading').show();
-
-        	       this.timer = setInterval(function() { jQuery.nginxUploadProgressFetch(this, settings['nginx_progress_url'], settings['progress_bar_id'], uuid) }, settings['interval']);
-        	       return true;
-        	     },
-        	      complete: function(xhr, statusText)  {
-        				// alert(statusText);
-        				// for(x in xhr) {alert(x+':'+xhr[x])}
-        				// alert(xhr.data);
-        				// alert(xhr.getResponseHeader("content-type"));
-        				// alert(xhr.getResponseHeader("content-type"));
-        	       data = eval("(" + xhr.responseText + ")");
-        	       if (data.location) {
-        	           window.location.href = data.location;
-        	       } else {
-        clearInterval(this.timer);
-        	           $('#uploader').show();
-        	           $('#uploading').hide();
-        	           $('#error').show();
-        	           if (data.error == "NotValid") {
-        	               $('#error_not_valid').show();
-        	           } else if (data.error == "FormatNotRecognised") {
-        	               $('#error_format_not_recognised').show();
-        	           } else {
-        	               $('#error_unknown').show();
-        	           }
-        	       }
-        	     },
-        	      dataType: 'json'        // 'xml', 'script', or 'json' (expected server response type)
-        	  };
-
-        		$(this).ajaxSubmit(options);
-        		return false;
-        	});
-        };
-
-        jQuery.nginxUploadProgress.inum = 0;
-
-        jQuery.nginxUploadProgressFetch = function(e, nginx_progress_url, progress_bar_id, uuid) {
-         // window.console.log("fetcing progress for "+uuid)
-         jQuery.nginxUploadProgress.inum++;
-
-         $.ajax({
-           type: "GET",
-           url: nginx_progress_url,
-           dataType: "json",
-           beforeSend: function(xhr) {
-             xhr.setRequestHeader("X-Progress-ID", uuid);
-             // window.console.log("setting headers: "+uuid)
-           },
-           complete: function(xhr, statusText) {
-             // window.console.log("complete!: "+statusText);
-           },
-           success: function(upload) {
-             /* change the width if the inner progress-bar */
-             if (upload.state == 'uploading') {
-               bar = $('#'+progress_bar_id);
-               w = Math.floor((upload.received / upload.size)*100);
-               bar.width(w + '%');
-
-               // Panda specific
-               bar.show();
-
-               // Update ETA
-               eta_seconds = ((upload.size / upload.received) * jQuery.nginxUploadProgress.inum) - jQuery.nginxUploadProgress.inum;
-
-               if (eta_seconds < 60) {
-                 eta_str = "under a minute"
-               } else if (eta_seconds < (60*5)) {
-                 eta_str = "a few minutes"
-               } else if (eta_seconds < (60*15)) {
-                 eta_str = "fifteen minutes"
-               } else if (eta_seconds < (60*30)) {
-                 eta_str = "about half an hour"
-               } else if (eta_seconds < (60*45)) {
-                 eta_str = "around 45 minutes"
-               } else if (eta_seconds < (60*60)) {
-                 eta_str = "less than an hour"
-               } else if (eta_seconds > (60*60)) {
-                 eta_str = "over an hour";
-               } else if (eta_seconds > (60*60*2)) {
-                 eta_str = "a few hours";
-               } else if (eta_seconds > (60*60*3)) {
-                 eta_str = "several hours";
-               } else if (eta_seconds > (60*60*6)) {
-                 eta_str = "quite a long time... at least 6 hours";
-               } else {
-                 eta_str = "";
-               }
-
-               $("#eta").html(eta_str);
-             } else if (upload.state == 'error') {
-               $('#uploader').show();
-               $('#uploading').hide();
-               $('#error').show();
-               if (upload.status == 413) {
-                 $('#error_too_large').show();
-               } else {
-                 $('#error_unknown').show();
-               }
-             }
-           }
-         });
-        };
-        </script>
-    </head>
-    <body>
-        <div id="pandaloader">
-          <div id="uploader">
-            <form id="upload" enctype="multipart/form-data" action="/uploads/upload" method="post">
-              <input name="file" type="file">
-              <input type="submit" value="Upload">
-            </form>
-          </div>
-
-          <div id="uploading">
-            <div id="progress" class="bar">
-              <div id="progressbar"> </div>
-            </div>
-          </div>
+                });
+            }
+        })(jQuery);
+    </script>
+</head>
+<body>
+<div id="base">
+    <div id="status">0%</div>
+    <div id="statbar_box">
+        <div id="statbar_bar"></div>
+    </div>
+    <!--><iframe src="upload.php" name="hidden_upload" frameborder="0"></iframe><-->
+    <form id="upload" action="upload" target="hidden_upload" method="post" enctype="multipart/form-data">
+        <div id="footer">
+                        <input type="hidden" name="MAX_FILE_SIZE" value="30000000"  />
+            <input type="file" name="uploader[]"/>
+            <input type="submit"/>
         </div>
-    </body>
+    </form>
+</div>
+</body>
 </html>

@@ -19,28 +19,8 @@
         }
         </style>
         <script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></script>
-         <script src="upload.js"></script>
-        <script type="text/javascript" charset="utf-8">
-        $(function() {
-          $('form').uploadProgress({
-            /* scripts locations for safari */
-            jqueryPath: "jquery.js",
-            uploadProgressPath: "upload.js",
+        <script src="upload.js"></script>
 
-            /* function called each time bar is updated */
-            uploading: function(upload) {$('#percents').html(upload.percents+'%');},
-
-            /* selector or element that will be updated */
-            progressBar: "#progressbar",
-        
-            /* progress reports url */
-            progressUrl: "/progress",
-
-            /* how often will bar be updated */
-            interval: 2000
-          });
-        });
-        </script>
     </head>
     <body>
         <form id="upload" enctype="multipart/form-data"

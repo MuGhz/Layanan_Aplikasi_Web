@@ -14,8 +14,8 @@ def test(request):
         myfile = request.FILES['file']
         fs = FileSystemStorage(location=folder)
         filename = fs.save(myfile.name, myfile)
-        uploaded_file_url = fs.url(filename)
+        uploaded_file_url = folder + '/' + fs.url(filename)
         return render(request, 'uploads/uploads.html', {
             'uploaded_file_url': uploaded_file_url
-        }))
+        })
     return render(request,'uploads/uploads.html')

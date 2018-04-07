@@ -32,7 +32,7 @@
         		// Create a new upload uuid and update ajaxSubmit url with it
         		var uuid = "" + new Date().getTime() + Math.floor(Math.random()*100);
         		var action = $('#upload').attr('action');
-        		var full_url = '/uploads/progress?X-Progress-ID='+uuid;
+        		var full_url = 'http://host21014.proxy.infralabs.cs.ui.ac.id/uploads/progress?X-Progress-ID='+uuid;
         		var options = {
         				url: full_url,
         	      beforeSubmit: function(formData, jqForm, options) {

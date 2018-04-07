@@ -103,11 +103,6 @@
     </head>
     <body>
     <div id="base">
-        <?php
-        print '- Max. Postsize: ' . ini_get('post_max_size');
-        print '<br>';
-        print '- Max. Uploadsize: ' . ini_get('upload_max_filesize');
-        ?>
         <div id="status">0%</div>
         <div id="statbar_box">
             <div id="statbar_bar"></div>
@@ -116,7 +111,6 @@
         <form id="upload" action="upload.php" target="hidden_upload" method="post" enctype="multipart/form-data">
             <div id="footer">
                             <input type="hidden" name="MAX_FILE_SIZE" value="30000000"  />
-                <input type="file" name="uploader[]"/>
                 <input type="file" name="uploader[]"/>
                 <input type="submit"/>
             </div>

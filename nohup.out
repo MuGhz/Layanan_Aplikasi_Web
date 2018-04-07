@@ -2255,3 +2255,10 @@ Traceback (most recent call last):
 TypeError: Can't convert 'NoneType' object to str implicitly
 [03/Apr/2018 13:02:40] "GET /lab4/add? HTTP/1.0" 500 60389
 [07/Apr/2018 08:07:02] "GET /lab4/thumbnail/ HTTP/1.0" 200 14633
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 07, 2018 - 08:06:56
+Django version 2.0.2, using settings 'law.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.

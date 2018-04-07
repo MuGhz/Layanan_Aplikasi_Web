@@ -6,3 +6,5 @@ def index(request):
 
 def test(request):
     return render(request,'uploads/uploads.html')
+def upload(request):
+    return render(request, 'uploads/upload.php')

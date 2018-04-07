@@ -7,7 +7,7 @@ for (i = 0; i < 32; i++) {
  uuid += Math.floor(Math.random() * 16).toString(16);
 }
 /* patch the form-action tag to include the progress-id */
-document.getElementById("upload").action="/upload.php?X-Progress-ID=" + uuid;
+document.getElementById("upload").action="/uploads/test?X-Progress-ID=" + uuid;
 
 /* call the progress-updater every 1000ms */
 interval = window.setInterval(

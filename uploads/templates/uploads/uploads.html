@@ -33,7 +33,7 @@
         		var uuid = "" + new Date().getTime() + Math.floor(Math.random()*100);
         		var action = $('#upload').attr('action');
         		var full_url = action+'?X-Progress-ID='+uuid;
-
+                console.log(full_url)
         		var options = {
         				url: full_url,
         	      beforeSubmit: function(formData, jqForm, options) {
@@ -159,7 +159,7 @@
 
           <div id="uploading">
             <div id="progress" class="bar">
-              <div id="progressbar">& </div>
+              <div id="progressbar"> </div>
             </div>
           </div>
         </div>

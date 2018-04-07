@@ -12,7 +12,7 @@ jQuery.nginxUploadProgress = function(settings) {
 		// Create a new upload uuid and update ajaxSubmit url with it
 		var uuid = "" + new Date().getTime() + Math.floor(Math.random()*100);
 		var action = $('#upload').attr('action');
-		var full_url = 'http://host21014.proxy.infralabs.cs.ui.ac.id/uploads/progress?X-Progress-ID='+uuid;
+		var full_url = action ;
 
 		var options = {
 				url: full_url,

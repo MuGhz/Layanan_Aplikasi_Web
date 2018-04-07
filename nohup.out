@@ -2022,3 +2022,236 @@ Not Found: /lab4/add/
 [23/Mar/2018 15:58:09] "GET /lab4/add/?a=1&b=salah HTTP/1.0" 404 2702
 [23/Mar/2018 15:58:18] "GET /lab4/add?a=1&b=salah HTTP/1.0" 400 72
 [23/Mar/2018 15:58:22] "GET /lab4/add?a=1&b=1 HTTP/1.0" 200 29
+Not Found: /robots.txt
+[23/Mar/2018 16:58:55] "GET /robots.txt HTTP/1.0" 404 2281
+Not Found: /lab4/add/
+[23/Mar/2018 16:58:56] "GET /lab4/add/ HTTP/1.0" 404 2686
+Internal Server Error: /lab4/add
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/law/lab4/views.py", line 22, in add
+    data = datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " :: A = " + a + " :: B = " + b + '\n'
+TypeError: Can't convert 'NoneType' object to str implicitly
+[23/Mar/2018 16:59:03] "GET /lab4/add HTTP/1.0" 500 60633
+[24/Mar/2018 13:40:26] "GET /lab4/add?a=1&b=1 HTTP/1.0" 200 29
+Not Found: /favicon.ico
+[24/Mar/2018 13:40:26] "GET /favicon.ico HTTP/1.0" 404 2284
+Not Found: /favicon.ico
+[24/Mar/2018 13:40:26] "GET /favicon.ico HTTP/1.0" 404 2284
+[24/Mar/2018 13:52:17] "GET /lab4/add?a=1&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 13:52:17] "GET /lab4/add?a=12&b=fail HTTP/1.0" 400 72
+Internal Server Error: /lab4/add
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/law/lab4/views.py", line 22, in add
+    data = datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " :: A = " + a + " :: B = " + b + '\n'
+TypeError: Can't convert 'NoneType' object to str implicitly
+[24/Mar/2018 13:52:18] "GET /lab4/add?a=21 HTTP/1.0" 500 60886
+[24/Mar/2018 13:52:38] "GET /lab4/add?a=1&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 13:52:38] "GET /lab4/add?a=12&b=fail HTTP/1.0" 400 72
+Internal Server Error: /lab4/add
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/law/lab4/views.py", line 22, in add
+    data = datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " :: A = " + a + " :: B = " + b + '\n'
+TypeError: Can't convert 'NoneType' object to str implicitly
+[24/Mar/2018 13:52:38] "GET /lab4/add?a=21 HTTP/1.0" 500 60886
+[24/Mar/2018 13:59:06] "GET /lab4/add?a=1&b=4 HTTP/1.0" 200 29
+[24/Mar/2018 14:02:47] "GET /lab4/add?a=1&b=4 HTTP/1.0" 200 29
+Internal Server Error: /lab4/add
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/law/lab4/views.py", line 22, in add
+    data = datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " :: A = " + a + " :: B = " + b + '\n'
+TypeError: Can't convert 'NoneType' object to str implicitly
+[24/Mar/2018 14:03:51] "GET /lab4/add HTTP/1.0" 500 60562
+[24/Mar/2018 14:04:38] "GET /lab4/add?a=1&b=3 HTTP/1.0" 200 29
+[24/Mar/2018 14:04:50] "GET /lab4/add?a=1&b=3 HTTP/1.0" 200 29
+[24/Mar/2018 14:05:50] "GET /lab4/add?b=2&a=1 HTTP/1.0" 200 29
+[24/Mar/2018 14:06:20] "GET /lab4/add?b=2&a=1 HTTP/1.0" 200 29
+[24/Mar/2018 14:06:24] "GET /lab4/add?b=2&a=1 HTTP/1.0" 200 29
+[24/Mar/2018 14:06:29] "GET /lab4/add?b=2&a=2 HTTP/1.0" 200 29
+[24/Mar/2018 14:06:32] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 14:06:37] "GET /lab4/add?a=5&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 14:07:16] "GET /lab4/add?a=5&b=52 HTTP/1.0" 200 30
+[24/Mar/2018 14:07:20] "GET /lab4/add?a=58&b=52 HTTP/1.0" 200 31
+[24/Mar/2018 14:07:47] "GET /lab4/add?a=1&b=42a HTTP/1.0" 400 72
+[24/Mar/2018 14:08:21] "GET /lab4/add?a=1&b=3 HTTP/1.0" 200 29
+[24/Mar/2018 14:08:32] "GET /lab4/add?a=1&b=3 HTTP/1.0" 200 29
+[24/Mar/2018 14:08:40] "GET /lab4/add?a=14&b=3 HTTP/1.0" 200 30
+[24/Mar/2018 14:09:47] "GET /lab4/add?a=1&b=1 HTTP/1.0" 200 29
+[24/Mar/2018 14:11:44] "GET /lab4/add?a=1&b=42a HTTP/1.0" 400 72
+[24/Mar/2018 14:11:47] "GET /lab4/add?a=1&b=42 HTTP/1.0" 200 30
+[24/Mar/2018 14:11:50] "GET /lab4/add?a=1&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 14:12:51] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:13:01] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:13:03] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:13:07] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:13:12] "GET /lab4/add?a=w2&b=2 HTTP/1.0" 400 72
+[24/Mar/2018 14:13:15] "GET /lab4/add?a=1&b=1 HTTP/1.0" 200 29
+[24/Mar/2018 14:13:21] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:13:21] "GET /lab4/add?a=w2&b=2 HTTP/1.0" 400 72
+[24/Mar/2018 14:13:21] "GET /lab4/add?a=1&b=1 HTTP/1.0" 200 29
+[24/Mar/2018 14:16:37] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:21:46] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:22:14] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:23:01] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:23:18] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:23:48] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:23:55] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:25:36] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:27:41] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:27:45] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:29:11] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:29:40] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:31:56] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:32:21] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:32:49] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:32:55] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:33:10] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:35:45] "GET /lab4/add?a=1&b=6 HTTP/1.0" 200 29
+[24/Mar/2018 14:35:45] "GET /lab4/add?a=w2&b=2 HTTP/1.0" 400 72
+[24/Mar/2018 14:35:45] "GET /lab4/add?a=1&b=1 HTTP/1.0" 200 29
+Internal Server Error: /lab4/add
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/law/lab4/views.py", line 22, in add
+    data = datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " :: A = " + a + " :: B = " + b + '\n'
+TypeError: Can't convert 'NoneType' object to str implicitly
+[24/Mar/2018 14:50:36] "GET /lab4/add HTTP/1.0" 500 60633
+[24/Mar/2018 14:56:12] "GET /lab4/add?b=2&a=1 HTTP/1.0" 200 29
+[24/Mar/2018 14:56:18] "GET /lab4/add?a=1&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 14:56:22] "GET /lab4/add?a=1&b=test HTTP/1.0" 400 72
+[24/Mar/2018 14:56:26] "GET /lab4/add?a=1&b=1 HTTP/1.0" 200 29
+[24/Mar/2018 14:56:45] "GET /lab4/add?b=2&a=1 HTTP/1.0" 200 29
+[24/Mar/2018 14:56:55] "GET /lab4/add?b=2&a=1 HTTP/1.0" 200 29
+[24/Mar/2018 14:57:00] "GET /lab4/add?b=2&a=2 HTTP/1.0" 200 29
+[24/Mar/2018 14:57:14] "GET /lab4/add?a=2&b=5 HTTP/1.0" 200 29
+[24/Mar/2018 14:57:18] "GET /lab4/add?a=2&b=5 HTTP/1.0" 200 29
+[24/Mar/2018 14:57:18] "GET /lab4/add?a=1&b=test HTTP/1.0" 400 72
+[24/Mar/2018 14:57:18] "GET /lab4/add?a=1&b=1 HTTP/1.0" 200 29
+[24/Mar/2018 14:59:48] "GET /lab4/add?a=1&b=1 HTTP/1.0" 200 29
+Internal Server Error: /lab4/add
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/law/lab4/views.py", line 22, in add
+    data = datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " :: A = " + a + " :: B = " + b + '\n'
+TypeError: Can't convert 'NoneType' object to str implicitly
+[24/Mar/2018 15:19:23] "GET /lab4/add?1=2&b=9 HTTP/1.0" 500 62491
+[24/Mar/2018 15:19:30] "GET /lab4/add?a=2&b=9 HTTP/1.0" 200 30
+[24/Mar/2018 15:19:30] "GET /lab4/add?a=2&b=9 HTTP/1.0" 200 30
+[24/Mar/2018 15:19:37] "GET /lab4/add?a=2&b=0 HTTP/1.0" 200 29
+[24/Mar/2018 15:19:46] "GET /lab4/add?a=2&b=0 HTTP/1.0" 200 29
+[24/Mar/2018 15:19:48] "GET /lab4/add?a=2&b=0 HTTP/1.0" 200 29
+[24/Mar/2018 15:19:49] "GET /lab4/add?a=2&b=0 HTTP/1.0" 200 29
+[24/Mar/2018 15:19:49] "GET /lab4/add?a=2&b=0 HTTP/1.0" 200 29
+[24/Mar/2018 15:19:50] "GET /lab4/add?a=2&b=0 HTTP/1.0" 200 29
+[24/Mar/2018 15:19:50] "GET /lab4/add?a=2&b=0 HTTP/1.0" 200 29
+[24/Mar/2018 15:19:51] "GET /lab4/add?a=2&b=0 HTTP/1.0" 200 29
+[24/Mar/2018 15:19:51] "GET /lab4/add?a=2&b=0 HTTP/1.0" 200 29
+[24/Mar/2018 15:19:52] "GET /lab4/add?a=2&b=0 HTTP/1.0" 200 29
+[24/Mar/2018 15:19:52] "GET /lab4/add?a=2&b=0 HTTP/1.0" 200 29
+[24/Mar/2018 15:19:53] "GET /lab4/add?a=2&b=0 HTTP/1.0" 200 29
+[24/Mar/2018 15:19:53] "GET /lab4/add?a=2&b=0 HTTP/1.0" 200 29
+[24/Mar/2018 15:19:54] "GET /lab4/add?a=2&b=0 HTTP/1.0" 200 29
+[24/Mar/2018 15:19:54] "GET /lab4/add?a=2&b=0 HTTP/1.0" 200 29
+[24/Mar/2018 15:19:55] "GET /lab4/add?a=2&b=0 HTTP/1.0" 200 29
+[24/Mar/2018 15:19:56] "GET /lab4/add?a=2&b=0 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:00] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:01] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:02] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:02] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:02] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:03] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:03] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:03] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:04] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:04] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:05] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:05] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:05] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:06] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:06] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:07] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:08] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:08] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:09] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:10] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:10] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:11] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:12] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:12] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+[24/Mar/2018 15:20:15] "GET /lab4/add?a=2&b=2 HTTP/1.0" 200 29
+Internal Server Error: /lab4/add
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/law/lab4/views.py", line 22, in add
+    data = datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " :: A = " + a + " :: B = " + b + '\n'
+TypeError: Can't convert 'NoneType' object to str implicitly
+[24/Mar/2018 16:55:45] "GET /lab4/add HTTP/1.0" 500 60633
+Internal Server Error: /lab4/add
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/law/lab4/views.py", line 22, in add
+    data = datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " :: A = " + a + " :: B = " + b + '\n'
+TypeError: Can't convert 'NoneType' object to str implicitly
+[24/Mar/2018 16:56:18] "GET /lab4/add HTTP/1.0" 500 60633
+Not Found: /robots.txt
+[26/Mar/2018 14:24:23] "GET /robots.txt HTTP/1.0" 404 2281
+Not Found: /lab4/add/
+[26/Mar/2018 14:24:24] "GET /lab4/add/? HTTP/1.0" 404 2686
+Not Found: /robots.txt
+[03/Apr/2018 13:02:40] "GET /robots.txt HTTP/1.0" 404 2281
+Internal Server Error: /lab4/add
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/law/lab4/views.py", line 22, in add
+    data = datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " :: A = " + a + " :: B = " + b + '\n'
+TypeError: Can't convert 'NoneType' object to str implicitly
+[03/Apr/2018 13:02:40] "GET /lab4/add? HTTP/1.0" 500 60389
+[07/Apr/2018 08:07:02] "GET /lab4/thumbnail/ HTTP/1.0" 200 14633

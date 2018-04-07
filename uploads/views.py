@@ -11,7 +11,10 @@ def index(request):
 def test(request):
     if request.method == 'POST' :
         folder = filename = os.path.dirname(__file__)+'/templates/uploads/cache'
-        myfile = request.FILES['file']
+        try :
+            myfile = request.FILES['file']
+        except Exception as e:
+            print(e)
         fs = FileSystemStorage(location=folder)
         filename = fs.save(myfile.name, myfile)
         uploaded_file_url = folder + '/' + fs.url(filename)

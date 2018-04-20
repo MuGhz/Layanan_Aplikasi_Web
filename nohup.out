@@ -2262,3 +2262,36 @@ April 07, 2018 - 08:06:56
 Django version 2.0.2, using settings 'law.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
+[07/Apr/2018 17:59:11] "GET /uploads/test HTTP/1.0" 200 1190
+[07/Apr/2018 17:59:11] "GET /uploads/upload.js HTTP/1.0" 200 1295
+[07/Apr/2018 18:01:27] "POST /uploads/test?X-Progress-ID=17915dd9a79d58a0af61a060ad3de02e HTTP/1.0" 200 1472
+[07/Apr/2018 18:01:27] "GET /uploads/upload.js HTTP/1.0" 200 1295
+[07/Apr/2018 19:51:04] "GET /uploads/test HTTP/1.0" 200 1190
+Not Found: /uploads/upload
+[07/Apr/2018 19:52:59] "GET /uploads/upload HTTP/1.0" 404 2813
+Not Found: /robots.txt
+[09/Apr/2018 15:49:17] "GET /robots.txt HTTP/1.0" 404 2389
+Internal Server Error: /lab4/add
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/law/lab4/views.py", line 22, in add
+    data = datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " :: A = " + a + " :: B = " + b + '\n'
+TypeError: Can't convert 'NoneType' object to str implicitly
+[09/Apr/2018 15:49:18] "GET /lab4/add? HTTP/1.0" 500 60465
+Not Found: /robots.txt
+[10/Apr/2018 04:12:16] "GET /robots.txt HTTP/1.0" 404 2389
+Not Found: /upload
+[10/Apr/2018 04:12:17] "GET /upload? HTTP/1.0" 404 2377
+Not Found: /robots.txt
+[11/Apr/2018 03:29:18] "GET /robots.txt HTTP/1.0" 404 2389
+[11/Apr/2018 03:29:19] "GET /uploads/test HTTP/1.0" 200 1190
+Not Found: /robots.txt
+[11/Apr/2018 13:57:18] "GET /robots.txt HTTP/1.0" 404 2389
+Not Found: /uploads/upload
+[11/Apr/2018 13:57:18] "GET /uploads/upload HTTP/1.0" 404 2813
+[15/Apr/2018 18:10:18] "GET /lab4/add?a=1&b=42a HTTP/1.0" 400 72

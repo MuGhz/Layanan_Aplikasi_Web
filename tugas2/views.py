@@ -5,14 +5,14 @@ import requests, json
 def call_request(var1,var2,operation):
     if operation == 'tambah':
         payloads = {'a':var1,'b':var2}
-        response = requests.get('http://host20099.proxy.infralabs.cs.ui.ac.id/tambah.php',params=payload,timeout=120)
+        response = requests.get('http://host20099.proxy.infralabs.cs.ui.ac.id/tambah.php',params=payloads,timeout=120)
         if response.status_code != requests.codes.ok :
             return call_request(var1,var2,operation)
         r = json.loads(response.text)
         return r['hasil']
     elif operation == 'kurang':
         payloads = {'a':var1,'b':var2}
-        response = requests.post('http://host20099.proxy.infralabs.cs.ui.ac.id/tambah.php',data=payload,timeout=120)
+        response = requests.post('http://host20099.proxy.infralabs.cs.ui.ac.id/tambah.php',data=payloads,timeout=120)
         if response.status_code != requests.codes.ok :
             return call_request(var1,var2,operation)
         return response.text
@@ -39,7 +39,7 @@ def math(request):
     return render(request,'tugas2/math.html')
 
 def orchestrator(request):
-    if request.method == GET:
+    if request.method == 'GET':
         a = request.GET.get('a')
         b = request.GET.get('b')
         c = request.GET.get('c')

@@ -2295,3 +2295,19 @@ Not Found: /robots.txt
 Not Found: /uploads/upload
 [11/Apr/2018 13:57:18] "GET /uploads/upload HTTP/1.0" 404 2813
 [15/Apr/2018 18:10:18] "GET /lab4/add?a=1&b=42a HTTP/1.0" 400 72
+[20/Apr/2018 13:31:30] "GET /uploads/ HTTP/1.0" 200 54
+Not Found: /favicon.ico
+[20/Apr/2018 13:31:30] "GET /favicon.ico HTTP/1.0" 404 2392
+Not Found: /favicon.ico
+[20/Apr/2018 13:31:30] "GET /favicon.ico HTTP/1.0" 404 2392
+[20/Apr/2018 13:32:01] "GET /uploads/test HTTP/1.0" 200 1190
+[20/Apr/2018 13:32:01] "GET /uploads/upload.js HTTP/1.0" 200 1295
+[20/Apr/2018 14:09:23] "GET /uploads/ HTTP/1.0" 200 54
+[20/Apr/2018 14:09:23] "GET /uploads/test HTTP/1.0" 200 1190
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 07, 2018 - 17:57:39
+Django version 2.0.2, using settings 'law.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.

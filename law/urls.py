@@ -22,4 +22,5 @@ urlpatterns = [
     path('oauth/',include('cots1.urls')),
     path('lab4/',include('lab4.urls')),
     path('uploads/',include('uploads.urls')),
+    path('tugas2/',include('tugas2.urls')),
 ]

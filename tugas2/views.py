@@ -12,7 +12,7 @@ def call_request(var1,var2,operation):
         return r['hasil']
     elif operation == 'kurang':
         payloads = {'a':var1,'b':var2}
-        response = requests.post('http://host20099.proxy.infralabs.cs.ui.ac.id/tambah.php',data=payloads,timeout=120)
+        response = requests.post('http://host20099.proxy.infralabs.cs.ui.ac.id/kurang.php',data=payloads,timeout=120)
         if response.status_code != requests.codes.ok :
             return call_request(var1,var2,operation)
         return response.text

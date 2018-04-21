@@ -45,12 +45,10 @@ def math(request):
     return render(request,'cots2/math.html')
 def result(request):
     if request.method == 'POST':
-        req = request.body.decode('utf-8')
-        req = json.loads(req)
-        a = req['a']
-        b = req['b']
-        c = req['c']
-        d = req['d']
+        a = request.POST['a']
+        b = request.POST['b']
+        c = request.POST['c']
+        d = request.POST['d']
         payloads={'a':a,'b':b,'c':c,'d':d}
         res = requests.get('http://host22014.proxy.infralabs.cs.ui.ac.id/cots2/orchestrator', params=payloads, timeout=1000)
         res = res['hasil']

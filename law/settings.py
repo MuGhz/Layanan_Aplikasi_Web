@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'lab4',
     'uploads',
     'tugas2',
+    'cots2',
 ]
 
 MIDDLEWARE = [

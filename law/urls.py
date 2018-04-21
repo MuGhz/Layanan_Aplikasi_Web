@@ -23,4 +23,5 @@ urlpatterns = [
     path('lab4/',include('lab4.urls')),
     path('uploads/',include('uploads.urls')),
     path('tugas2/',include('tugas2.urls')),
+    path('cots2/',include('cots2.urls')),
 ]

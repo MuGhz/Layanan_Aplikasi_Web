@@ -2311,3 +2311,12 @@ April 07, 2018 - 17:57:39
 Django version 2.0.2, using settings 'law.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
+[20/Apr/2018 16:53:25] "GET /tugas2/orchestrator?a=2&b=2&c=2&d=4 HTTP/1.0" 200 14
+[20/Apr/2018 17:36:05] "GET /tugas2/orchestrator HTTP/1.0" 200 14
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 20, 2018 - 16:50:56
+Django version 2.0.2, using settings 'law.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.

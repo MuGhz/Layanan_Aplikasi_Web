@@ -76,6 +76,7 @@ def r1(request):
         var2 = call_request(var1,c,'bagi')
         var3 = call_request(var2,0,'round')
         var4 = call_request(var3,d,'mod')
+        print(var4)
         res = {'hasil':var4}
         return JsonResponse(res,status=200)
     else :
@@ -95,6 +96,7 @@ def r2(request):
         var2 = call_request(b,c,'mod')
         var3 = call_request(var1,var2,'bagi')
         var4 = call_request(var3,0,'round')
+        print(var4)
         res = {'hasil':var4}
         return JsonResponse(res,status=200)
     else :
@@ -114,6 +116,7 @@ def r3(request):
         var2 = call_request(b,c,'bagi')
         var3 = call_request(var1,var2,'kali')
         var4 = call_request(var3,0,'round')
+        print(var4)
         res = {'hasil':var4}
         return JsonResponse(res,status=200)
     else :

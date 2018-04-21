@@ -42,7 +42,7 @@ def index(request):
     return HttpResponse("Hello, world. Welcome to Muhammad Ghozi's webservices.")
 
 def math(request):
-    return render(request,'tugas2/math.html')
+    return render(request,'cots2/math.html')
 
 def orchestrator(request):
     if request.method == 'GET':
@@ -59,7 +59,7 @@ def orchestrator(request):
         req3 = json.loads(req3.text)
         sum = req1['hasil'] + req2['hasil'] - req3['hasil']
         res = {'hasil':sum}
-        return JsonResponse(res,status=200)
+        return render(request,'cots2/math.html',{'hasil':hasil})
     else :
         response = {
             'status': 'Error',

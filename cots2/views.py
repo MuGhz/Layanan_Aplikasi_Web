@@ -43,17 +43,7 @@ def index(request):
 
 def math(request):
     return render(request,'cots2/math.html')
-def result(request):
-    if request.method == 'POST':
-        a = request.POST['a']
-        b = request.POST['b']
-        c = request.POST['c']
-        d = request.POST['d']
-        payloads={'a':a,'b':b,'c':c,'d':d}
-        res = requests.get('http://host22014.proxy.infralabs.cs.ui.ac.id/cots2/orchestrator', params=payloads, timeout=1000)
-        res = res['hasil']
-        return render(request,'cots2/math.html',{'hasil':res})
-    return render(request,'cots2/math.html')
+
 def orchestrator(request):
     if request.method == 'GET':
         a = request.GET.get('a')

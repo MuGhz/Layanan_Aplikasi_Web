@@ -42,6 +42,17 @@ def index(request):
     return HttpResponse("Hello, world. Welcome to Muhammad Ghozi's webservices.")
 
 def math(request):
+    if request.method == 'POST':
+        req = request.body.decode('utf-8')
+        req = json.loads(req)
+        a = req['a']
+        b = req['b']
+        c = req['c']
+        d = req['d']
+        payloads={'a':a,'b':b,'c':c,'d':d}
+        res = requests.get('http://host22014.proxy.infralabs.cs.ui.ac.id/cots2/orchestrator', params=payloads, timeout=1000)
+        res = res['hasil']
+        return render(request,'cots2/math.html',{'hasil':res})
     return render(request,'cots2/math.html')
 
 def orchestrator(request):
@@ -58,7 +69,8 @@ def orchestrator(request):
         req2 = json.loads(req2.text)
         req3 = json.loads(req3.text)
         sum = req1['hasil'] + req2['hasil'] - req3['hasil']
-        return render(request,'cots2/math.html',{'hasil':sum})
+        res = {'hasil':sum}
+        return JsonResponse(res,status=200)
     else :
         response = {
             'status': 'Error',

@@ -58,8 +58,7 @@ def orchestrator(request):
         req2 = json.loads(req2.text)
         req3 = json.loads(req3.text)
         sum = req1['hasil'] + req2['hasil'] - req3['hasil']
-        res = {'hasil':sum}
-        return render(request,'cots2/math.html',{'hasil':hasil})
+        return render(request,'cots2/math.html',{'hasil':sum})
     else :
         response = {
             'status': 'Error',

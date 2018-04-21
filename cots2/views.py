@@ -42,6 +42,8 @@ def index(request):
     return HttpResponse("Hello, world. Welcome to Muhammad Ghozi's webservices.")
 
 def math(request):
+    return render(request,'cots2/math.html')
+def result(request):
     if request.method == 'POST':
         req = request.body.decode('utf-8')
         req = json.loads(req)
@@ -54,7 +56,6 @@ def math(request):
         res = res['hasil']
         return render(request,'cots2/math.html',{'hasil':res})
     return render(request,'cots2/math.html')
-
 def orchestrator(request):
     if request.method == 'GET':
         a = request.GET.get('a')

@@ -44,23 +44,28 @@ def orchestrator(request):
         b = request.GET.get('b')
         c = request.GET.get('c')
         d = request.GET.get('d')
-        if isinstance(a,int) and isinstance(b,int) and isinstance(c,int) and isinstance(d,int):
-            var1 = call_request(a,b,'tambah')
-            var2 = call_request(c,b,'kali')
-            var3 = call_request(var1,c,'tambah')
-            var1 = call_request(var1,c,'kali')
-            var2 = call_request(var2,d,'kali')
-            var3 = call_request(var3,d,'kali')
-            var1 = call_request(var1,d,'bagi')
-            var2 = call_request(var2,a,'bagi')
-            var3 = call_request(var3,c,'bagi')
-            sum = call_request(var1,var3,'tambah')
-            sub = call_request(sum,var2,'kurang')
-            res = {'hasil':sub}
-            return JsonResponse(res,status=200)
-        else :
+        try :
+            a = (int)a
+            b = (int)b
+            c = (int)c
+            d= (int)d
+        except :
             res = {'hasil':"error, parameter must be integer"}
             return JsonResponse(res,status=200)
+        var1 = call_request(a,b,'tambah')
+        var2 = call_request(c,b,'kali')
+        var3 = call_request(var1,c,'tambah')
+        var1 = call_request(var1,c,'kali')
+        var2 = call_request(var2,d,'kali')
+        var3 = call_request(var3,d,'kali')
+        var1 = call_request(var1,d,'bagi')
+        var2 = call_request(var2,a,'bagi')
+        var3 = call_request(var3,c,'bagi')
+        sum = call_request(var1,var3,'tambah')
+        sub = call_request(sum,var2,'kurang')
+        res = {'hasil':sub}
+        return JsonResponse(res,status=200)
+
     else :
         response = {
             'status': 'Error',

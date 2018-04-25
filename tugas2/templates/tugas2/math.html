@@ -82,17 +82,37 @@
             color: #fff;
         }
         </style>
+        <script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></script>
     </head>
     <body>
         <div class="form-style-2">
         <div class="form-style-2-heading">Kalkulator Ajaib</div>
-        <form action="/tugas2/orchestrator" method="get">
+        <form id="form-id" action="/tugas2/orchestrator" method="get">
         <label for="field1"><span>A <span class="required">*</span></span><input type="text" class="input-field" name="a" value="" /></label>
         <label for="field2"><span>B <span class="required">*</span></span><input type="text" class="input-field" name="b" value="" /></label>
         <label for="field1"><span>C <span class="required">*</span></span><input type="text" class="input-field" name="c" value="" /></label>
         <label for="field2"><span>D <span class="required">*</span></span><input type="text" class="input-field" name="d" value="" /></label>
         <label><span>&nbsp;</span><input type="submit" value="Submit" /></label>
         </form>
+        <div class="form-style-2-heading">Hasil : {{ hasil }}</div>
         </div>
+        <script type='text/javascript'>
+            $("#form-id").submit(function(event) {
+            /* stop form from submitting normally */
+            event.preventDefault();
+
+            /* get the action attribute from the <form action=""> element */
+            var $form = $( this ),
+            url = $form.attr( 'action' );
+
+            /* Send the data using post with element id name and name2*/
+            var posting = $.get( url, { a: $('#a').val(), b: $('#b').val(), c: $('#c').val(), d: $('#d').val() } );
+
+            /* Alerts the results */
+            posting.done(function( data ) {
+            console.log(data)
+              });
+            });
+        </script>
     </body>
 </html>

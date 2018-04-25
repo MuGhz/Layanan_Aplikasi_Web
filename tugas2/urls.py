@@ -6,5 +6,6 @@ urlpatterns = [
     path('math', views.math, name='math'),
     path('orchestrator', views.orchestrator, name='orchestrator'),
     path('check', views.check, name='check'),
+
     #re_path(r'v1/comments/(?:(?P<id>\d+))?$',views.comments, name="comments")
 ]

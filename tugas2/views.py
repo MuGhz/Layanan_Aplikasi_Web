@@ -45,10 +45,10 @@ def orchestrator(request):
         c = request.GET.get('c')
         d = request.GET.get('d')
         try :
-            a = int(a)
-            b = int(b)
-            c = int(c)
-            d = int(d)
+            a = float(a)
+            b = float(b)
+            c = float(c)
+            d = float(d)
         except :
             res = {'hasil':"error, parameter must be integer"}
             return JsonResponse(res,status=200)

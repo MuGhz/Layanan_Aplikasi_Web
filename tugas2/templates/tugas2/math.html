@@ -100,7 +100,7 @@
             $("#form-id").submit(function(event) {
             /* stop form from submitting normally */
             event.preventDefault();
-            $("hasil").val("sedang menghitung")
+            document.getElementById("hasil").innerHTML = "sedang menghitung";
             /* get the action attribute from the <form action=""> element */
             var $form = $( this ),
             url = $form.attr( 'action' );
@@ -111,7 +111,7 @@
             /* Alerts the results */
             posting.done(function( data ) {
                 hasil = data["hasil"]
-                $("hasil").val(hasil)
+                document.getElementById("hasil").innerHTML =hasil;
               });
             });
         </script>

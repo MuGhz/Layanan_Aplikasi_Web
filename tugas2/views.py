@@ -44,7 +44,7 @@ def orchestrator(request):
         b = request.GET.get('b')
         c = request.GET.get('c')
         d = request.GET.get('d')
-        if not isinstance(a,int) and not isinstance(b,int) and not isinstance(c,int) and not isinstance(d,int):
+        if isinstance(a,int) and isinstance(b,int) and isinstance(c,int) and isinstance(d,int):
             var1 = call_request(a,b,'tambah')
             var2 = call_request(c,b,'kali')
             var3 = call_request(var1,c,'tambah')

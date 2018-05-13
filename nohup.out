@@ -2320,3 +2320,71 @@ April 20, 2018 - 16:50:56
 Django version 2.0.2, using settings 'law.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
+[25/Apr/2018 04:07:23] "GET /tugas2/math HTTP/1.0" 200 4617
+[25/Apr/2018 04:07:29] "GET /tugas2/orchestrator?a=1&b=2&c=3&d=4 HTTP/1.0" 200 19
+Not Found: /robots.txt
+[29/Apr/2018 03:54:53] "GET /robots.txt HTTP/1.0" 404 2602
+[29/Apr/2018 03:54:54] "GET /tugas2/math HTTP/1.0" 200 4617
+Not Found: /footer/
+[02/May/2018 01:45:25] "GET /footer/ HTTP/1.0" 404 2593
+Not Found: /favicon.ico
+[02/May/2018 01:45:26] "GET /favicon.ico HTTP/1.0" 404 2605
+Not Found: /favicon.ico
+[02/May/2018 01:45:26] "GET /favicon.ico HTTP/1.0" 404 2605
+Not Found: /footer
+[02/May/2018 01:45:55] "GET /footer HTTP/1.0" 404 2590
+Not Found: /footer
+[02/May/2018 01:45:57] "GET /footer HTTP/1.0" 404 2590
+Not Found: /footer
+[02/May/2018 01:46:49] "GET /footer HTTP/1.0" 404 2590
+Not Found: /footer
+[02/May/2018 01:46:52] "GET /footer HTTP/1.0" 404 2590
+Not Found: /footer/
+[02/May/2018 01:46:57] "GET /footer/ HTTP/1.0" 404 2593
+Not Found: /footer/index.html
+[02/May/2018 01:47:21] "GET /footer/index.html HTTP/1.0" 404 2623
+Not Found: /
+[02/May/2018 01:47:34] "GET / HTTP/1.0" 404 2554
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 25, 2018 - 04:07:20
+Django version 2.0.2, using settings 'law.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+Not Found: /favicon.ico
+[02/May/2018 05:10:44] "GET /favicon.ico HTTP/1.0" 404 2605
+Not Found: /favicon.ico
+[02/May/2018 05:10:44] "GET /favicon.ico HTTP/1.0" 404 2605
+Not Found: /robots.txt
+[02/May/2018 08:54:20] "GET /robots.txt HTTP/1.0" 404 2602
+Internal Server Error: /lab4/add
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/law/lab4/views.py", line 22, in add
+    data = datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " :: A = " + a + " :: B = " + b + '\n'
+TypeError: Can't convert 'NoneType' object to str implicitly
+[02/May/2018 08:54:20] "GET /lab4/add? HTTP/1.0" 500 60501
+Not Found: /robots.txt
+[05/May/2018 09:15:10] "GET /robots.txt HTTP/1.0" 404 2602
+Internal Server Error: /lab4/add
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/exception.py", line 35, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.5/dist-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/law/lab4/views.py", line 22, in add
+    data = datetime.now().strftime('%Y-%m-%d %H:%M:%S') + " :: A = " + a + " :: B = " + b + '\n'
+TypeError: Can't convert 'NoneType' object to str implicitly
+[05/May/2018 09:15:11] "GET /lab4/add? HTTP/1.0" 500 60501
+Not Found: /robots.txt
+[10/May/2018 08:12:59] "GET /robots.txt HTTP/1.0" 404 2602
+Not Found: /lab4/add/
+[10/May/2018 08:12:59] "GET /lab4/add/? HTTP/1.0" 404 3007

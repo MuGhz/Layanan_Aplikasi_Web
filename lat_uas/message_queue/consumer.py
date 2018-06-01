@@ -13,9 +13,10 @@ def zip_file(ch, method, properties, body):
         msg = json.loads(body.decode("utf-8"))
         z = zipstream.ZipFile(mode='w', compression=zipstream.ZIP_DEFLATED)
         z.write(msg["file"])
+        sum = 0
         for data in z:
-            progress = len(data)/msg['size']
-            print("[X] compressing ",progress,"%")
+            sum += (len(data)/msg['size'])*100
+            print("[X] compressing ",sum,"%")
     except Exception as e:
         print ("[E] Error :",e)
 

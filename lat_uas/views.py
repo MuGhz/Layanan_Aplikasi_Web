@@ -15,13 +15,14 @@ def upload(request):
         fs = FileSystemStorage(location=folder)
         filename = fs.save(myfile.name, myfile)
         uploaded_file_url = folder + '/' + myfile.name
+        fname = fs.url(filename)
         size = int(os.stat(uploaded_file_url).st_size)
-        zipfile(uploaded_file_url,size)
-        exc_method = '/exchange/ZIP_PROGRESS/'+uploaded_file_url
+        zipfile(uploaded_file_url,size,fname)
+        exc_method = '/exchange/ZIP_PROGRESS/'+fname
         return render(request, 'lat_uas/zip.html', {'exc_method':exc_method})
     return render(request,'lat_uas/index.html')
 
-def zipfile(filename,size):
+def zipfile(filename,size,fname):
     credentials = pika.PlainCredentials('1406559055', '1406559055')
     params= pika.ConnectionParameters('152.118.148.103',5672,'/1406559055',credentials)
     connection = pika.BlockingConnection(params)
@@ -31,6 +32,7 @@ def zipfile(filename,size):
     msg = {}
     msg['file'] = filename
     msg['size'] = size
+    msg['fname'] = fname
     msg = json.dumps(msg)
     channel.basic_publish(exchange='ZIP_QUEUE',routing_key='',body=msg)
     print ("[x] ZIP start")

@@ -16,6 +16,7 @@ def zip_file(ch, method, properties, body):
         msg = json.loads(body.decode("utf-8"))
         location = msg['file']
         size = msg['size']
+        fname = msg['fname']
         sum = 0
         z = zipstream.ZipFile(mode='w', compression=zipstream.ZIP_DEFLATED)
         z.write(msg["file"])
@@ -25,7 +26,7 @@ def zip_file(ch, method, properties, body):
                 sum += (len(data)/size)*100
                 print("[X] compressing ",sum,"%")
                 time.sleep(0.01)
-                channel_baru.basic_publish(exchange='ZIP_PROGRESS',routing_key=location,body=str(sum))
+                channel_baru.basic_publish(exchange='ZIP_PROGRESS',routing_key=fname,body=str(sum))
             print("[X] compress done")
     except Exception as e:
         print ("[E] Error :",e)

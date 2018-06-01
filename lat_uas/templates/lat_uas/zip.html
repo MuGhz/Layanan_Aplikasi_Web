@@ -38,9 +38,8 @@
             if ("WebSocket" in window) {
                 var ws_stomp_display     = new SockJS( 'http://152.118.148.103:15674/stomp');
                 var client_display = Stomp.over(ws_stomp_display);
-                {% if exc_method %}
                 var mq_queue_display    = {{exc_method}};
-                {% endif %}
+                
                 var on_connect_display = function() {
                   console.log('connected');
                   client_display.subscribe(mq_queue_display, on_message_display);

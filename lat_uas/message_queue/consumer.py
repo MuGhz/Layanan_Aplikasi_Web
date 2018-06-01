@@ -4,6 +4,8 @@ params= pika.ConnectionParameters('152.118.148.103',5672,'/1406559055',credentia
 connection = pika.BlockingConnection(params)
 channel = connection.channel()
 channel.exchange_declare(exchange='ZIP_QUEUE', exchange_type='direct', durable=True)
+channel_baru = connection.channel()
+channel_baru.exchange_declare(exchange="ZIP", exchange_type='fanout')
 result = channel.queue_declare()
 queue_name = result.method.queue
 channel.queue_bind(exchange='ZIP_QUEUE',queue=queue_name,routing_key='')
@@ -24,7 +26,7 @@ def zip_file(ch, method, properties, body):
                 sum += (len(data)/size)*100
                 print("[X] compressing ",sum,"%")
                 time.sleep(0.01)
-                channel.basic_publish(exchange='ZIP_QUEUE',routing_key=fname,body=str(sum))
+                channel_baru.basic_publish(exchange='ZIP',routing_key=fname,body=str(sum))
             print("[X] compress done")
     except Exception as e:
         print ("[E] Error :",e)

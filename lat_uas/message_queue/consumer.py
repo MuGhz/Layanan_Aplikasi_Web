@@ -1,8 +1,8 @@
-import pika, json,
+import pika, json
 credentials = pika.PlainCredentials('1406559055', '1406559055')
 params= pika.ConnectionParameters('152.118.148.103',5672,'/1406559055',credentials)
 connection = pika.BlockingConnection(params)
-channel = ''
+channel = connection.channel()
 channel.exchange_declare(exchange='ZIP_QUEUE', exchange_type='direct', durable=True)
 result = channel.queue_declare()
 queue_name = result.method.queue
@@ -21,5 +21,3 @@ def zip_file(ch, method, properties, body):
             print("[X] compressing ",progress,"%")
     except Exception as e:
         print ("[E] Error :",e)
-
-def

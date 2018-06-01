@@ -18,7 +18,7 @@ def upload(request):
         size = int(os.stat(uploaded_file_url).st_size)
         zipfile(uploaded_file_url,size)
         exchange_method = '/exchange/ZIP_QUEUE/'+uploaded_file_url
-        return render(request, 'lat_uas/zip.html',{'exchange_method':exchange_method})
+        return render(request, 'lat_uas/zip.html', {'exchange_method':exchange_method})
     return render(request,'lat_uas/index.html')
 
 def zipfile(filename,size):

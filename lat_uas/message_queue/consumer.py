@@ -5,7 +5,7 @@ connection = pika.BlockingConnection(params)
 channel = connection.channel()
 channel.exchange_declare(exchange='ZIP_QUEUE', exchange_type='direct', durable=True)
 channel_baru = connection.channel()
-channel_baru.exchange_declare(exchange_declare='ZIP_PROGRESS', exchange_type='direct', durable=True)
+channel_baru.exchange_declare(exchange='ZIP_PROGRESS', exchange_type='direct', durable=True)
 result = channel.queue_declare()
 queue_name = result.method.queue
 channel.queue_bind(exchange='ZIP_QUEUE',queue=queue_name,routing_key='')

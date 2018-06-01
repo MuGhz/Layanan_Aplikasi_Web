@@ -20,6 +20,7 @@ def zip_file(ch, method, properties, body):
         with open(location+'.zip','wb') as f:
             for data in z:
                 f.write(data)
+                sum += (len(data)/size)*100
                 print("[X] compressing ",sum,"%")
             print("[X] compress done")
     except Exception as e:

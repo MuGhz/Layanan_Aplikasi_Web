@@ -14,10 +14,12 @@ def zip_file(ch, method, properties, body):
         z = zipstream.ZipFile(mode='w', compression=zipstream.ZIP_DEFLATED)
         z.write(msg["file"])
         sum = 0
-        for data in z:
-            sum += (len(data)/msg['size'])*100
-            print("[X] compressing ",sum,"%")
-        print("[X] compress done")
+        with open(msg["file"]+'.zip', 'wb') as f:
+            for data in z:
+                sum += (len(data)/msg['size'])*100
+                f.write(data)
+                print("[X] compressing ",sum,"%")
+            print("[X] compress done")
     except Exception as e:
         print ("[E] Error :",e)
 

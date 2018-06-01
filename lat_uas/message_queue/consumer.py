@@ -18,12 +18,10 @@ def zip_file(ch, method, properties, body):
             for data in z:
                 sum += (len(data)/msg['size'])*100
                 f.write(data)
-                message = {}
-                message['progress'] = sum
-                message = json.dumps(message)
-                channel.basic_publish(exchange='ZIP_QUEUE',routing_key=msg['file'],body=message)
+                channel.basic_publish(exchange='ZIP_QUEUE',routing_key=msg['file'],body=sum)
                 print ("[x] ZIP PROGRESS published")
                 print("[X] compressing ",sum,"%")
+            channel.basic_publish(exchange='ZIP_QUEUE',routing_key=msg['file'],body=100)
             print("[X] compress done")
     except Exception as e:
         print ("[E] Error :",e)

@@ -9,7 +9,7 @@ queue_name = result.method.queue
 channel.queue_bind(exchange='ZIP_QUEUE',queue=queue_name,routing_key='')
 print ('[X] Waiting for logs')
 def zip_file(ch, method, properties, body):
-    time.sleep(10)
+    time.sleep(5)
     try :
         msg = json.loads(body.decode("utf-8"))
         z = zipstream.ZipFile(mode='w', compression=zipstream.ZIP_DEFLATED)
@@ -22,7 +22,6 @@ def zip_file(ch, method, properties, body):
                 channel.basic_publish(exchange='ZIP_QUEUE',routing_key=msg['file'],body=sum)
                 print ("[x] ZIP PROGRESS published")
                 print("[X] compressing ",sum,"%")
-            channel.basic_publish(exchange='ZIP_QUEUE',routing_key=msg['file'],body=100)
             print("[X] compress done")
     except Exception as e:
         print ("[E] Error :",e)

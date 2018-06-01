@@ -9,12 +9,12 @@ queue_name = result.method.queue
 channel.queue_bind(exchange='ZIP_QUEUE',queue=queue_name,routing_key='')
 print ('[X] Waiting for logs')
 def zip_file(ch, method, properties, body):
+    time.sleep(10)
     try :
         msg = json.loads(body.decode("utf-8"))
         z = zipstream.ZipFile(mode='w', compression=zipstream.ZIP_DEFLATED)
         z.write(msg["file"])
         sum = 0
-        time.sleep(10)
         with open(msg["file"]+'.zip', 'wb') as f:
             for data in z:
                 sum += (len(data)/msg['size'])*100

@@ -20,9 +20,7 @@ def zip_file(ch, method, properties, body):
         with open(location+'.zip','wb') as f:
             for data in z:
                 f.write(data)
-                sum += len(data)/size
                 print("[X] compressing ",sum,"%")
-                channel.basic_publish(exchange='ZIP_QUEUE',routing_key=location,body=sum)
             print("[X] compress done")
     except Exception as e:
         print ("[E] Error :",e)

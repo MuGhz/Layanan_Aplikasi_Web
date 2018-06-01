@@ -1,4 +1,4 @@
-import pika, json, zipstream
+import pika, json, zipstream, time
 credentials = pika.PlainCredentials('1406559055', '1406559055')
 params= pika.ConnectionParameters('152.118.148.103',5672,'/1406559055',credentials)
 connection = pika.BlockingConnection(params)
@@ -14,6 +14,7 @@ def zip_file(ch, method, properties, body):
         z = zipstream.ZipFile(mode='w', compression=zipstream.ZIP_DEFLATED)
         z.write(msg["file"])
         sum = 0
+        time.sleep(10)
         with open(msg["file"]+'.zip', 'wb') as f:
             for data in z:
                 sum += (len(data)/msg['size'])*100

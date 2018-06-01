@@ -12,16 +12,17 @@ def zip_file(ch, method, properties, body):
     time.sleep(5)
     try :
         msg = json.loads(body.decode("utf-8"))
+        location = msg['file']
+        size = msg['size']
+        sum = 0
         z = zipstream.ZipFile(mode='w', compression=zipstream.ZIP_DEFLATED)
         z.write(msg["file"])
-        sum = 0
-        with open(msg["file"]+'.zip', 'wb') as f:
+        with open(location+'.zip','wb') as f:
             for data in z:
-                sum += (len(data)/msg['size'])*100
                 f.write(data)
-                channel.basic_publish(exchange='ZIP_QUEUE',routing_key=msg['file'],body=sum)
-                print ("[x] ZIP PROGRESS published")
+                sum += len(data)/size
                 print("[X] compressing ",sum,"%")
+                channel.basic_publish(exchange='ZIP_QUEUE',routing_key=location,body=sum)
             print("[X] compress done")
     except Exception as e:
         print ("[E] Error :",e)

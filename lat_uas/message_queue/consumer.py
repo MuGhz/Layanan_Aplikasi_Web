@@ -8,9 +8,6 @@ result = channel.queue_declare()
 queue_name = result.method.queue
 channel.queue_bind(exchange='ZIP_QUEUE',queue=queue_name,routing_key='')
 print ('[X] Waiting for logs')
-channel.basic_consume(zip_file, queue=queue_name, no_ack=True)
-channel.start_consuming()
-
 def zip_file(ch, method, properties, body):
     try :
         msg = json.loads(body.decode("utf-8"))
@@ -21,3 +18,6 @@ def zip_file(ch, method, properties, body):
             print("[X] compressing ",progress,"%")
     except Exception as e:
         print ("[E] Error :",e)
+
+channel.basic_consume(zip_file, queue=queue_name, no_ack=True)
+channel.start_consuming()

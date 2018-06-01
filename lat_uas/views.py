@@ -14,10 +14,10 @@ def upload(request):
         myfile = request.FILES['userfile']
         fs = FileSystemStorage(location=folder)
         filename = fs.save(myfile.name, myfile)
-        uploaded_file_url = folder + '/' + fs.url(filename)
+        uploaded_file_url = folder + '/' + myfile.name
         size = int(os.stat(uploaded_file_url).st_size)
         zipfile(uploaded_file_url,size)
-        exc_method = '/exchange/ZIP_QUEUE/'+uploaded_file_url
+        exc_method = '/exchange/ZIP_PROGRESS/'+uploaded_file_url
         return render(request, 'lat_uas/zip.html', {'exc_method':exc_method})
     return render(request,'lat_uas/index.html')
 

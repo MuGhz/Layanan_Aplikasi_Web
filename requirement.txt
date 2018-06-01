@@ -4,3 +4,4 @@ pillow
 python-thumbnails
 sorl-thumbnail==12.3
 zeep
+zipstream

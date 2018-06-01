@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'uploads',
     'tugas2',
     'cots2',
+    'lat_uas',
 ]
 
 MIDDLEWARE = [

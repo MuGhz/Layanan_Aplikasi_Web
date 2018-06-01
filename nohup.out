@@ -2388,3 +2388,22 @@ Not Found: /robots.txt
 [10/May/2018 08:12:59] "GET /robots.txt HTTP/1.0" 404 2602
 Not Found: /lab4/add/
 [10/May/2018 08:12:59] "GET /lab4/add/? HTTP/1.0" 404 3007
+Not Found: /robots.txt
+[16/May/2018 09:17:03] "GET /robots.txt HTTP/1.0" 404 2602
+Not Found: /uploads/upload
+[16/May/2018 09:17:03] "GET /uploads/upload HTTP/1.0" 404 3026
+Not Found: /robots.txt
+[16/May/2018 20:58:08] "GET /robots.txt HTTP/1.0" 404 2602
+Not Found: /upload
+[16/May/2018 20:58:09] "GET /upload? HTTP/1.0" 404 2590
+[20/May/2018 01:47:40] "GET /api/ HTTP/1.0" 200 54
+[20/May/2018 16:01:58] "GET /cots2/math HTTP/1.0" 200 3573
+Not Found: /favicon.ico
+[20/May/2018 16:01:59] "GET /favicon.ico HTTP/1.0" 404 2605
+[20/May/2018 16:02:06] "GET /cots2/orchestrator?a=1&b=2&c=3&d=4 HTTP/1.0" 200 14
+Not Found: /robots.txt
+[24/May/2018 07:38:21] "GET /robots.txt HTTP/1.0" 404 2602
+[24/May/2018 07:38:21] "GET /uploads/test HTTP/1.0" 200 1190
+Not Found: /robots.txt
+[30/May/2018 17:54:46] "GET /robots.txt HTTP/1.0" 404 2602
+[30/May/2018 17:54:46] "GET /tugas2/math HTTP/1.0" 200 4617

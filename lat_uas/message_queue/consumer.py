@@ -1,4 +1,4 @@
-import pika, json
+import pika, json, zipstream
 credentials = pika.PlainCredentials('1406559055', '1406559055')
 params= pika.ConnectionParameters('152.118.148.103',5672,'/1406559055',credentials)
 connection = pika.BlockingConnection(params)
@@ -11,7 +11,7 @@ print ('[X] Waiting for logs')
 def zip_file(ch, method, properties, body):
     try :
         msg = json.loads(body.decode("utf-8"))
-        z = zipstream.ZipFile(mode='w', compression=ZIP_DEFLATED)
+        z = zipstream.ZipFile(mode='w', compression=zipstream.ZIP_DEFLATED)
         z.write(msg["file"])
         for data in z:
             progress = len(data)/msg['size']

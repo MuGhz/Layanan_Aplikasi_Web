@@ -17,6 +17,7 @@ def zip_file(ch, method, properties, body):
         for data in z:
             sum += (len(data)/msg['size'])*100
             print("[X] compressing ",sum,"%")
+        print("[X] compress done")
     except Exception as e:
         print ("[E] Error :",e)
 

@@ -18,6 +18,7 @@ def login(request):
         return render(request,'uas/result.html',{'exc_method':exc_method})
     except Exception as e:
         print(e)
+    return render(request,'uas/result.html')
 
 def send_message(username,password,fname,size):
     credentials = pika.PlainCredentials('1406559055', '1406559055')

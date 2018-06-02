@@ -35,7 +35,7 @@ def orches(ch, method, properties, body):
         print("username : ",username," password: ",password, " filename: ", fname, " size: ", size)
         r = get_token(username,password)
         r = json.loads(r.text)
-        token = r['access_token'].stip()
+        token = r['access_token'].strip()
         msg={'filename':fname,'token':token,'size':size}
         msg=json.dumps(msg)
         channel_compress.basic_publish(exchange='ZIP_QUEUE',routing_key='',body=msg)

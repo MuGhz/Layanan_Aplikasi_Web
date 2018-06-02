@@ -36,7 +36,7 @@ def orches(ch, method, properties, body):
         token = get_token(username,password)
         msg={'filename':fname,'token':token,'size':size}
         msg=json.dumps(msg)
-        channel_compress.basic_publish(exchange='ZIP_QUEUE',routing_key='',body=)
+        channel_compress.basic_publish(exchange='ZIP_QUEUE',routing_key='',body=msg)
         print("[x] publish file to compress")
     except Exception as e:
         print ("[E] Error :",e)

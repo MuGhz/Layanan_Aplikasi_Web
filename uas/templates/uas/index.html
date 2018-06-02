@@ -23,11 +23,11 @@
     </head>
     <body>
         <form id="upload" enctype="multipart/form-data"
-        action="/uas/" method="post"">
-          <input namme="username" type="text" label="username" />
-          <input namme="password" type="text" label="password" />
-          <input name="userfile" type="file" label="fileupload" />
-          <input type="submit" value="Send File" />
+        action="/uas/login" method="post"">
+        Username :<input namme="username" type="text" label="username" /><br>
+        Password :<input namme="password" type="text" label="password" /><br>
+        Select File:<input name="userfile" type="file" label="fileupload" /><br>
+        <input type="submit" value="Send File" />
         </form>
     </body>
 </html>

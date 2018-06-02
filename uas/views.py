@@ -47,6 +47,7 @@ def send_file(myfile):
     channel = connection.channel()
     channel.exchange_declare(exchange='TRANS_FILE',exchange_type='fanout')
     file64 = base64.b64encode(myfile.read())
+    file64 = file64.decode("utf-8")
     msg = {}
     msg['file'] = file64
     msg['filename'] = myfile.name

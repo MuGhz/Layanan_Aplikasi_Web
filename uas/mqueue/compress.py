@@ -1,4 +1,4 @@
-import pika, json, zipstream, time, os
+import pika, json, zipstream, time, os, requests
 
 RESOURCE_URL = 'http://172.22.0.2/oauth/resource'
 credentials = pika.PlainCredentials('1406559055', '1406559055')

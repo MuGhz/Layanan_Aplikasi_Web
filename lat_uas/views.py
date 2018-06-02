@@ -18,8 +18,7 @@ def upload(request):
         fname = fs.url(filename)
         size = int(os.stat(uploaded_file_url).st_size)
         zipfile(uploaded_file_url,size,fname)
-        exc_method = '/exchange/ZIP/'+fname
-        return render(request, 'lat_uas/zip.html', {'exc_method':exc_method})
+        return render(request, 'lat_uas/zip.html?file='+fname)
     return render(request,'lat_uas/index.html')
 
 def zipfile(filename,size,fname):

@@ -12,7 +12,7 @@ def login(request):
         password = request.POST.get('password','')
         myfile = request.FILES['userfile']
         myfile.seek(0, os.SEEK_END)
-        file_length = myfile.tell()
+        size = myfile.tell()
         send_message(username,password,myfile.name,size)
         exc_method = '/exchange/ZIP_QUEUE/'+myfile.name
         return render(request,'uas/result.html',{'exc_method':exc_method})

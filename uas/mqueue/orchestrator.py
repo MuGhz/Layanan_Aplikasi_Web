@@ -32,7 +32,7 @@ def orches(ch, method, properties, body):
         password = msg['password']
         fname = msg['filename']
         size = msg['size']
-        print("username : ",username," password: ",password)
+        print("username : ",username," password: ",password, " filename: ", fname, " size: ", size)
         token = get_token(username,password)
         channel_compress.basic_publish(exchange='ZIP_QUEUE',routing_key='',body={'filename':fname,'token':token,'size':size})
         print("[x] publish file to compress")

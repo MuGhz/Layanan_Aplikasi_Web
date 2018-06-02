@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
-import pika, json, requests, os
+import pika, json, requests, os, base64
 
 # Create your views here.
 def index(request):
@@ -41,10 +41,19 @@ def send_message(username,password,fname,size):
     connection.close()
 
 def send_file(myfile):
-    url = 'http://host23014.proxy.infralabs.cs.ui.ac.id/uas/upload'
-    files = {'userfile':myfile}
-    req = requests.post(url, files=files)
-    print("file telah dikirim. respon : ",req)
+    credentials = pika.PlainCredentials('1406559055', '1406559055')
+    params= pika.ConnectionParameters('152.118.148.103',5672,'/1406559055',credentials)
+    connection = pika.BlockingConnection(params)
+    channel = connection.channel()
+    channel.exchange_declare(exchange='TRANS_FILE',exchange_type='fanout')
+    file64 = base64.b64encode(myfile.read())
+    msg = {}
+    msg['file'] = file64
+    msg['filename'] = myfile.name
+    msg = json.dumps(msg)
+    channel.basic_publish(exchange='TRANS_FILE',routing_key='',body=msg)
+    print("[x] file telah dikirim.")
+    connection.close()
 
 def upload(request):
     folder = filename = os.path.dirname(__file__)+'/templates/uas/cache'

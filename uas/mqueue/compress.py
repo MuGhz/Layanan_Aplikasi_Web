@@ -27,6 +27,7 @@ def zip_file(ch, method, properties, body):
         location = os.path.dirname(__file__)+'/templates/uas/cache/'+fname
         size = msg['size']
         token = msg['token']
+        print('filename : ', fname, 'location : ', location, ' size: ', size)
     except Exception as e:
         print ("[E] Error :",e)
     try :

@@ -11,6 +11,7 @@ RESOURCE_URL = 'http://172.22.0.2/oauth/resource'
 def get_token(username,password):
     payloads = {'username': username, 'password': password, 'client_id': CLIENT_ID, 'client_secret': CLIENT_SECRET, 'grant_type': GRANT_TYPE}
     response = requests.post(OAUTH_URL, data=payloads)
+    print("GET TOKEN :",response)
     return response
 
 credentials = pika.PlainCredentials('1406559055', '1406559055')
@@ -34,6 +35,7 @@ def orches(ch, method, properties, body):
         size = msg['size']
         token = get_token(username,password)
         channel_compress.basic_publish(exchange='ZIP_QUEUE',routing_key='',body={'filename':fname,'token':token,'size':size})
+        print("[x] publish file to compress")
     except Exception as e:
         print ("[E] Error :",e)
 

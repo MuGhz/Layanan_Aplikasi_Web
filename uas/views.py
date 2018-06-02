@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-import pika, json, requests
+import pika, json, requests, os
 
 # Create your views here.
 def index(request):

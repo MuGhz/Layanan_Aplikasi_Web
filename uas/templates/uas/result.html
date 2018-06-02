@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>Latihan UAS LAW</title>
+        <style>
+        #progress {
+          background: #eee;
+          border: 1px solid #222;
+          margin-top: 20px;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="tp">(progress)</div>
+        <div id="jam"></div>
+        <div id="ctime">Waktu kompresi = 0</div>
+        <div id="timenow"></div>
+        <div id="filename" hidden>{{exc_method}}</div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script type = "text/javascript">
+      var filename = document.getElementById("filename").innerHTML;
+      WebSocketTest();
+      function WebSocketTest() {
+
+            if ("WebSocket" in window) {
+                var ws_stomp_display = new SockJS('http://152.118.148.103:15674/stomp');
+                var client_display = Stomp.over(ws_stomp_display);
+                var mq_queue_display = filename;
+                var on_connect_display = function() {
+                  console.log('connected');
+                  client_display.subscribe(mq_queue_display, on_message_display);
+                };
+
+                var on_error_display =  function() {
+                  console.log('error');
+                };
+
+                var on_message_display = function(m) {
+                  console.log('message received');
+                  $('#jam').html(m.body);
+                };
+                client_display.connect('1406559055', '1406559055', on_connect_display, on_error_display, '/1406559055');
+
+            } else {
+               // The browser doesn't support WebSocket
+               alert("WebSocket NOT supported by your Browser!");
+            }
+        }
+        WebSocketJam();
+        function WebSocketJam(){
+            if ("WebSocket" in window) {
+                var ws_stomp_display = new SockJS('http://152.118.148.103:15674/stomp');
+                var client_display = Stomp.over(ws_stomp_display);
+                var mq_queue_display = '/exchange/TIME/stream';
+                var on_connect_display = function() {
+                  console.log('connected');
+                  client_display.subscribe(mq_queue_display, on_message_display);
+                };
+
+                var on_error_display =  function() {
+                  console.log('error');
+                };
+
+                var on_message_display = function(m) {
+                  console.log('message received');
+                  $('#timenow').html(m.body);
+                };
+                client_display.connect('1406559055', '1406559055', on_connect_display, on_error_display, '/1406559055');
+
+            } else {
+               // The browser doesn't support WebSocket
+               alert("WebSocket NOT supported by your Browser!");
+            }
+        }
+      </script>
+    </body>
+</html>

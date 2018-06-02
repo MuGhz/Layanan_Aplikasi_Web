@@ -25,4 +25,5 @@ urlpatterns = [
     path('tugas2/',include('tugas2.urls')),
     path('cots2/',include('cots2.urls')),
     path('latihanUas/',include('lat_uas.urls')),
+    path('uas/',include('uas.urls')),
 ]

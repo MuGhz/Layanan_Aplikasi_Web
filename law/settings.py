@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'tugas2',
     'cots2',
     'lat_uas',
+    'uas',
 ]
 
 MIDDLEWARE = [

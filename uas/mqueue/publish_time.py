@@ -5,7 +5,6 @@ connection = pika.BlockingConnection(params)
 channel = connection.channel()
 channel.exchange_declare(exchange='TIME',exchange_type='fanout')
 while(True):
-    timenow =
     channel.basic_publish(exchange='TIME',routing_key='',body=str(datetime.datetime.now()))
     time.sleep(1)
 connection.close()

@@ -10,6 +10,7 @@ def login(request):
     try :
         username = request.POST.get('username','')
         password = request.POST.get('password','')
+        print('username : ',username," password :",password)
         myfile = request.FILES['userfile']
         myfile.seek(0, os.SEEK_END)
         size = myfile.tell()

@@ -1,4 +1,4 @@
-import pika, json, zipstream, time, os, requests
+import pika, json, zipstream, time, os, requests, base64
 
 RESOURCE_URL = 'http://172.22.0.2/oauth/resource'
 credentials = pika.PlainCredentials('1406559055', '1406559055')
@@ -60,6 +60,7 @@ def write_file(ch, method, properties, body):
         msg = json.loads(body.decode("utf-8"))
         file64 = msg['file']
         filename = msg['filename']
+        file64 = str.encode(file64)
         print("write file :",filename)
         with open("uas/templates/uas/cache/"+filename, "wb") as fh:
             fh.write(base64.decodebytes(file64))

@@ -8,12 +8,12 @@ def index(request):
 
 def login(request):
     try :
-        req = request.body.decode('utf-8')
-        req = json.loads(req)
+        username = request.POST.get('username','')
+        password = request.POST.get('password','')
         myfile = request.FILES['userfile']
         myfile.seek(0, os.SEEK_END)
         file_length = myfile.tell()
-        send_message(req['username'],req['password'],myfile.name,size)
+        send_message(username,password,myfile.name,size)
         exc_method = '/exchange/ZIP_QUEUE/'+myfile.name
         return render(request,'uas/result.html',{'exc_method':exc_method})
     except Exception as e:

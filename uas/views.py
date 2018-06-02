@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 import pika, json, requests, os
 
 # Create your views here.

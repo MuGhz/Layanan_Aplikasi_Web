@@ -45,7 +45,7 @@ def zip_file(ch, method, properties, body):
                 channel.basic_publish(exchange='ZIP_QUEUE',routing_key=fname,body=str(sum))
             print("[X] compress done")
     except Exception as e:
-        print("Unauthorized")
+        print(e)
 
 channel.basic_consume(zip_file, queue=queue_name, no_ack=True)
 channel.start_consuming()

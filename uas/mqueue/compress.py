@@ -36,7 +36,7 @@ def zip_file(ch, method, properties, body):
         print(response)
         sum = 0
         z = zipstream.ZipFile(mode='w', compression=zipstream.ZIP_DEFLATED)
-        z.write(msg["file"])
+        z.write(location)
         with open(location+'.zip','wb') as f:
             for data in z:
                 f.write(data)

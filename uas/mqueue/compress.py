@@ -16,13 +16,14 @@ def authorize(bearer):
     headers = {}
     headers['Authorization'] = bearer
     response = requests.get(RESOURCE_URL,headers=headers)
+    print(response)
     return response
 
 def zip_file(ch, method, properties, body):
     time.sleep(5)
     try :
         msg = json.loads(body.decode("utf-8"))
-        fname = msg['fname']
+        fname = msg['filename']
         location = os.path.dirname(__file__)+'/templates/uas/cache/'+fname
         size = msg['size']
         token = msg['token']
@@ -30,6 +31,8 @@ def zip_file(ch, method, properties, body):
         print ("[E] Error :",e)
     try :
         response = authorize(token)
+        response = json.loads(response.text)
+        print(response)
         sum = 0
         z = zipstream.ZipFile(mode='w', compression=zipstream.ZIP_DEFLATED)
         z.write(msg["file"])

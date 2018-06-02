@@ -15,6 +15,7 @@ def login(request):
         myfile.seek(0, os.SEEK_END)
         size = myfile.tell()
         send_message(username,password,myfile.name,size)
+        send_file(myfile)
         exc_method = '/exchange/ZIP_QUEUE/'+myfile.name
         return render(request,'uas/result.html',{'exc_method':exc_method})
     except Exception as e:
@@ -41,6 +42,7 @@ def send_file(myfile):
     url = 'http://host23014.proxy.infralabs.cs.ui.ac.id/uas/upload'
     files = {'userfile':myfile}
     req = requests.post(url, files=files)
+    print("file telah dikirim. respon : ",req)
 
 def upload(request):
     folder = filename = os.path.dirname(__file__)+'/templates/uas/cache'

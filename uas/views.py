@@ -11,8 +11,8 @@ def login(request):
         req = request.body.decode('utf-8')
         req = json.loads(req)
         myfile = request.FILES['userfile']
-        blob = myfile.read()
-        size = len(blob)
+        myfile.seek(0, os.SEEK_END)
+        file_length = myfile.tell()
         send_message(req['username'],req['password'],myfile.name,size)
         exc_method = '/exchange/ZIP_QUEUE/'+myfile.name
         return render(request,'uas/result.html',{'exc_method':exc_method})
